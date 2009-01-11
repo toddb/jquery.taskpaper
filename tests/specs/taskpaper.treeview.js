@@ -1,11 +1,11 @@
-describe('I need to be able to populate the treeview', {
+describe('I need to be able to populate the taskpaper treeview', {
   
-  'before': function() {
+  before_each: function() {
     item = new taskpaperItem();   
-    root = $('<ul id="todo" class="taskpaper">').insertAfter('#main')
+    root = $('<ul id="todo">').insertAfter('#main')  	
 	},
 	
-	'after': function(){
+	after_each: function(){
     $('#todo').remove()
 	},
 	

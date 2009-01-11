@@ -1,6 +1,6 @@
-describe('I need to be able to populate the taskpaper results object', {
+describe('I need to be able to populate the object taskpaper results', {
   
-  'before all': function() {
+  before_all: function() {
     
     taskpaper = 'Personal:\n- @email Sam McDowell re: lunch @due(2008-12-22)\nBusiness:\n- review credit card for online services @online'
     feed = new taskpaperResults(taskpaper);
@@ -8,10 +8,6 @@ describe('I need to be able to populate the taskpaper results object', {
     todo = feed.items
     proj1 = todo[0]
     proj2 = todo[1]
-	},
-	
-	'after all': function(){
-
 	},
 	
 	'should be at version 0.1': function(){

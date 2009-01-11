@@ -1,6 +1,6 @@
 describe('I need to be able to populate the treeview', {
   
-  'before': function() {
+  before: function() {
     $('<ul id="todo">').insertAfter('#main')
 
 		$('#todo').taskpaper({
@@ -8,7 +8,7 @@ describe('I need to be able to populate the treeview', {
     	})
 	},
 	
-	'after': function(){
+	after: function(){
      $('#todo').remove()
 	},
 	

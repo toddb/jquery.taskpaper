@@ -1,7 +1,8 @@
 describe('I need to be able to manipulate the taskpaper sheet', {
   
   'before all': function() {
-    $('<ul id="todo" class="taskpaper">').insertAfter('#main')
+    $('#main').find('ul').remove()
+    $('<ul id="todo">').appendTo('#main')
 
 		$('#todo').taskpaper({
         	url: 'data/sample.taskpaper'
@@ -9,20 +10,16 @@ describe('I need to be able to manipulate the taskpaper sheet', {
 	},
 	
 	'after all': function(){
-      $('#todo').remove()
+      $('#main').find('ul').remove()
+      $('#main').find('select').remove()
 	},
 
 	'should load up the tree': function(){
-	  value_of($("#todo").is(':visible')).should_be(true)	  
+	  value_of($("#todo").is(':visible')).should_be_true()  
 	},
-	
-	'should look for @due': function(){
-	  console.log($('#todo').find("span:contains(@due)"))
-	  console.log($('#todo').find("span:contains(@online)"))
-	},
-	
+		
 	'should look for tasks': function(){
-	  value_of($('#todo').tasks().size()).should_be(20)
+	  value_of($("#todo").tasks().size()).should_be(20)
 	},
 
 	'should look for items': function(){
