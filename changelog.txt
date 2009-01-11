@@ -1,0 +1,9 @@
+0.1
+
+* load a taskpaper onto the screen
+* use treeview as a display layer to the xml via a jQuery proxy
+* change display of lines based on @done tags
+* double click on tasks to make done
+* select tags from drop down to highlight (toggle)
+* use treeview handler (in demo)
+* automatically add taskpaper class to tree

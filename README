@@ -1,0 +1,84 @@
+taskpaper : jQuery feed parser plugin
+Copyright (C) 2008 toddb
+Dual licensed under the MIT (MIT-license.txt)
+and GPL (GPL-license.txt) licenses.
+
+Dependencies
+============
+
+* JQuery
+
+Usage
+=====
+<html>
+<head>
+
+<link rel="stylesheet" href="lib/treeview/jquery.treeview.css" />
+<link rel="stylesheet" href="css/storyq.treeview.css" />
+<link rel="stylesheet" href="css/storyq.screen.css" />
+
+<script src="lib/jquery/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery/jquery.cookie.js" type="text/javascript"></script>
+<script src="jquery.taskpaper.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<div id="tree">
+
+<script type="text/javascript">
+
+$(function () {
+
+    $('#tree').taskpaper({
+        url: 'my.taskpaper'
+    });
+});
+
+</body>
+</html>
+
+
+    jQuery.taskpaper(options); 
+    
+    options:
+    
+    * url: the feed URL (required).
+    * data: the jQuery DOM selector id.
+    * load: a pre-processing callback function that can be overridden for populating the tree (object -> list).
+    * tagsControl: the element that the tags list is populated int
+    * success: a function to be called if the request succeeds.
+      The function gets passed one argument: the taskpaper object.
+    
+    Example:
+    
+    $('#tree).taskpaper({
+        url: 'results.taskpaper',
+        success: function(feed) {
+            alert(feed.version);
+        }
+    });
+    
+Basic structure of object as hierarchical tree:
+  project > tasks >
+		  > notes > tags
+Compared to taskpaper representation	  
+		  project:
+          - tasks @tags
+    		  notes
+      
+Taskpaper properties
+================
+
+    * feed.version
+    * feed.items: an array of Projects
+    
+Taskpaper properties
+====================
+
+    * item.type: project, task, note, tag
+    * item.text
+    * item.items: an array of children
+
+Please see the provided examples and units/spec tests for more information. Run from /test-src.html
+

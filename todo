@@ -1,0 +1,10 @@
+0.2:
+- remove lines with spaces
+- be able to deal with tabs in the document
+- don't add more than one done tag
+- have a tree structure that allow the list to "come back in" (this is a broken hierarchical tree because it can only grow in depth)
+- add a new task
+- add a project
+
+0.3:
+- send results back to a server

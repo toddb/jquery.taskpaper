@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>taskpaper - jQuery feed parser plugin - test</title>
+<link rel="stylesheet" href="lib/treeview/jquery.treeview.css" />
+<link rel="stylesheet" href="src/css/taskpaper.treeview.css" />
+<link rel="stylesheet" href="src/css/taskpaper.screen.css" />
+
+<script src="lib/jquery/jquery.js" type="text/javascript"></script>
+<script src="lib/jquery/jquery.cookie.js" type="text/javascript"></script>
+<script src="lib/treeview/jquery.treeview.js" type="text/javascript"></script>
+<script src="src/taskpaper.js" type="text/javascript"></script>
+<script src="src/taskpaper.treeview.js" type="text/javascript"></script>
+<script src="src/taskpaperitem.js" type="text/javascript"></script>
+<script src="src/taskpaperresults.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+jQuery(function() {
+
+    var feedsUrls = ['tests/data/sample.taskpaper'];
+        
+    for(var i = 0; i < feedsUrls.length; i++) {
+
+      $('#todo').taskpaper({url: feedsUrls[i], load: null, tagsControl: '#tags', success: function(feed) {
+	
+    			// here's old school testing to the console
+          console.log(feed)
+          console.log('feed version: ' + feed.version);
+
+    			$("#todo").treeview({
+    				collapsed: false,
+    				animated: "medium",
+    				persist: "location",
+    				control: '#todocontrol',
+    			});
+    			
+        }
+      });
+    }
+});
+
+</script>
+
+</head>
+<body>
+<h1>taskpaper - jQuery feed parser plugin - test</h1>
+<p>Please open Firefox + Firebug console and look at the object</p>
+<p>Tests are here: <a href="tests/specs.html">specs</a></p>
+
+<ol>
+<li>Double click on task to make it done</li>
+<li>Select a tag from the drop-down to toggle highlight in the list</li>
+</ol>
+
+<div id="todocontrol"> <a href="?#">Show projects only</a> | <a href="?#">Show All</a>  | <a href="?#">Toggle</a>  | <span id="tags">Select a tag: </span></div>
+
+<div><ul id="todo"></div>
+	
+</body>
+</html>
