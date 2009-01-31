@@ -50,7 +50,7 @@ describe('You use these basic parts in any way that you like. TaskPaper doesnt f
 
 })
 
-describe('These are additional parts that add functionality', function(){
+describe('These are additional parts that add functionality', {
 
   'To change fonts and colors use the "Theme Options" popup in Preferences': function(){
     value_of(this).should_fail("TODO")  
@@ -58,11 +58,11 @@ describe('These are additional parts that add functionality', function(){
 	
 })
 
-describe('Business rules': function(){
+describe('Business rules', {
   
   'The filter shows red when a "(" is placed after a @tag': function(){},
   
-  'Any line's formatting changes when ":" or "-\w" is used in that order': function(){},
+  'Any line\'s formatting changes when ":" or "-\w" is used in that order': function(){},
   
   'Only one level of projects is available from the main menu': function(){},
   
