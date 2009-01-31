@@ -2,7 +2,6 @@ describe('I need to select tasks via tags drop down', {
   
   before_all: function() {
     $('<ul id="todo">').appendTo('#main')
-
 		$('#todo').taskpaper({ url: 'data/sample.taskpaper'	})
 	},
 	
