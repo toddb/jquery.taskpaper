@@ -1,17 +1,12 @@
 describe('I need to be able to manipulate the taskpaper sheet', {
   
-  'before all': function() {
-    $('#main').find('ul').remove()
+  before_all: function() {
     $('<ul id="todo">').appendTo('#main')
-
-		$('#todo').taskpaper({
-        	url: 'data/sample.taskpaper'
-    	})
+		$('#todo').taskpaper({ url: 'data/sample.taskpaper'	})
 	},
 	
-	'after all': function(){
-      $('#main').find('ul').remove()
-      $('#main').find('select').remove()
+	after_all: function(){
+      $('#main').empty()
 	},
 
 	'should load up the tree': function(){
@@ -36,8 +31,8 @@ describe('I need to be able to manipulate the taskpaper sheet', {
 	  value_of($('#todo').tag('online').size()).should_be(6)
 	},
 	
-	'should return list of unique tags from lines': function(){
-	  value_of($('#todo').tagslist().length).should_be(9)	  
+	'should return list of unique tags from lines (excludes "(xxxx)")': function(){
+	  value_of($('#todo').tagslist().length).should_be(5)	  
 	},
 
 	'should show only the projects': function(){
@@ -84,6 +79,16 @@ describe('I need to be able to manipulate the taskpaper sheet', {
 	'should create a select drop-down from tags and place after main': function(){
 	  $('#todo').selectTags('#main')
 	  value_of($('#main').find('>select').is(":visible")).should_be(true)
-	  value_of($('#main').find('>select>option').size()).should_be(9)
+	  value_of($('#main').find('>select>option').size()).should_be(5)
 	},
+	
+	'should hide all items': function(){
+	  value_of($("#todo").projects().size()).should_be(10)
+	  value_of($("#todo").projects().parent(':visible').size()).should_be(10)
+	  
+	  $('#todo').hideAll()
+
+    value_of($("#todo").projects().parent(':hidden').size()).should_be(10)
+    value_of($("#todo").projects().parent(':visible').size()).should_be(0)
+  	},
 })

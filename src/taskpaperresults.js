@@ -8,13 +8,14 @@ taskpaperResults.prototype = {
   taskpaper: '',
   tasks: [],
   items: [],
-  types: ['pending', 'complete', 'waiting'],
   itemtypes: ['project', 'task', 'note'],
-  tags: ['todo', 'pending', 'done', 'email'],
+  // types: ['pending', 'complete', 'waiting'],  // to be used for special types
   taskDelimiter: '-',
   projectDelimiter: ':',
 	
 	parse: function(taskpaper){
+	  
+	  this.items = []
 		
 		var result = parent = task = this;
 		

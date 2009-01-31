@@ -39,6 +39,17 @@ jQuery.fn.taskpaper.treeview = {}
 		projects: function(){
 		  return this.find("li>span.project")
 		},
+
+		projectslist: function(){
+		  var list = new Array();
+		  var projects = this.projects().filter(function(){
+        re = /([\w]+):/g;
+        list.push($(this).html().replace(re, "$1"))
+        list = list.unique()
+        return
+        })
+      return list
+		},
 		
 		items: function(){
 		  return this.find("li>span")
@@ -55,8 +66,8 @@ jQuery.fn.taskpaper.treeview = {}
 		tagslist: function(){
 		  var list = new Array();
 		  var tags = this.tags().filter(function(){
-        re = /(.*)\s@([\w]+)/g;
-        list.push($(this).html().replace(re, "$2"))
+        re = /.*\s@([\w]+)[\(\w-\)]*/g;
+        list.push($(this).html().replace(re, "$1"))
         list = list.unique()
         return
         })
@@ -78,15 +89,45 @@ jQuery.fn.taskpaper.treeview = {}
 		  return this.tag(tag).filter(function(){ $(this).toggleClass(CLASSES.highlighted) })
 		},
 		
+		hideAll: function() {
+		  return this.items().filter(function(){ $(this).parent().hide()})		  
+		},
+
+		showAll: function() {
+		  return this.items().filter(function(){ $(this).parent().show()})		  
+		},
+		
+		filtertag: function(tag){
+		  this.hideAll()
+		  return this.tag(tag).filter(function(){ $(this).parents('li').show() })
+		},
+		
+		filterproject: function(tag){
+		  this.hideAll()
+		  return this.find('li>span.project:contains(' + tag + ')').filter(function(){ $(this).parents('li').show().end().siblings('ul').children('li').show() })
+		},
+		
 		selectTags: function(elem){
 		  ret = $("<select/>")
 		  tree = this
       $.each(this.tagslist(), function(){
         tag = this.valueOf()
-        ret.append($('<option/>').html(tag).attr('value', tag).click(function(){ tree.highlighttag(this.value) }))  
+        ret.append($('<option/>').html(tag).attr('value', tag).click(function(){ tree.filtertag(this.value) }))  
       })
 		  return ret.appendTo(elem)
-		}
+		},
+
+		selectProjects: function(elem){
+		  ret = $("<select/>")
+		  tree = this
+      $.each(this.projectslist(), function(){
+        tag = this.valueOf()
+        ret.append($('<option/>').html(tag).attr('value', tag).click(function(){ tree.filterproject(this.value) }))  
+      })
+		  return ret.appendTo(elem)
+		},
+		
+		
 	})
 	
 	// classes used by the plugin

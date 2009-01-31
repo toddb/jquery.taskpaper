@@ -9,6 +9,8 @@ jQuery.fn.taskpaper = jQuery.fn.taskpaper.getResults = function(options) {
         feed: null,
 
 		load: function(feed){
+      // alert(feed.items)
+      console.log(feed.items)
 
               function node(item, appendTo){
                 if (item.items == undefined) return
@@ -25,7 +27,7 @@ jQuery.fn.taskpaper = jQuery.fn.taskpaper.getResults = function(options) {
             var parent = this.data
             
             $.each(feed.items, function() { node(this, parent)} )              
-
+            
 					},
         
     }, options);
@@ -41,11 +43,12 @@ jQuery.fn.taskpaper = jQuery.fn.taskpaper.getResults = function(options) {
             
             success: function(taskpaper) {
                 var feed = new taskpaperResults(taskpaper);
-
+                
                 if(jQuery.isFunction(options.load)) options.load(feed)
                 if(jQuery.isFunction(options.success)) options.success(feed)
                 
                 if (options.tagsControl) options.data.selectTags(options.tagsControl)
+                if (options.projectsControl) options.data.selectProjects(options.projectsControl)
             }
         });
     }
