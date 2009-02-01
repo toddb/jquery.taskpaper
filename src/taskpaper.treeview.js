@@ -127,6 +127,10 @@ jQuery.fn.taskpaper.treeview = {}
 		  return ret.appendTo(elem)
 		},
 		
+		textFilter: function(){
+      return $('<label for="query"><span>Filter</span><input id="filter" type="text" value="" name="q"/></label><button>Cancel</button>').appendTo(this)
+		},
+		
 		
 	})
 	
