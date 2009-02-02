@@ -49,6 +49,7 @@ jQuery.fn.taskpaper = jQuery.fn.taskpaper.getResults = function(options) {
                 
                 if (options.tagsControl) options.data.selectTags(options.tagsControl)
                 if (options.projectsControl) options.data.selectProjects(options.projectsControl)
+                if (options.filterControl) options.data.textFilter(options.filterControl)
             }
         });
     }

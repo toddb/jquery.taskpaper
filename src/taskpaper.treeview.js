@@ -127,8 +127,18 @@ jQuery.fn.taskpaper.treeview = {}
 		  return ret.appendTo(elem)
 		},
 		
-		textFilter: function(){
-      return $('<label for="query"><span>Filter</span><input id="filter" type="text" value="" name="q"/></label><button>Cancel</button>').appendTo(this)
+		textFilter: function(elem){
+		  ret = $('<label for="query"><span>Filter: </span></label>')
+		  $('<input id="query" type="text" value="" name="q"/>').keyup(function(){ $(this).filterBox() }).appendTo(ret)
+		  $('<button>').html('Cancel').click(function(){ $('input#query').val(''); $('#todo').showAll() }).appendTo(ret)
+      return ret.appendTo(elem)
+		},
+		
+		filterBox: function(){
+      re = /@([\w]+)|project\s?=\s?\"([\w]+)\"|\'([\w\s]+)\'|([\w]+)/g
+      tag = this.val().match(re, "$1")
+      //console.log(tag)
+      // this.filtertag(tag)
 		},
 		
 		

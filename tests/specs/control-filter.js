@@ -6,7 +6,7 @@ describe('I need to filter from a text box', {
  	},
 	
 	after_all: function(){
-      // $('#main').empty()
+      $('#main').empty()
 	},
 	
 	'should show projects and items when I have a filter for projects eg project="Gen-i"': function(){
@@ -32,9 +32,9 @@ describe('I need to filter from a text box', {
 	},
 	
 	'should show an empty text field with clear button': function(){
-	  $('#main').textFilter()
-	  value_of($('#main').find('input#filter').is(":visible")).should_be(true)
-	  value_of($('#main').find('input#filter button').is(":visible")).should_be(true)
+	  $('#todo').textFilter('#main')
+	  value_of($('#main').find('input#query').is(":visible")).should_be(true)
+	  value_of($('#main').find('input#query').siblings('button').is(":visible")).should_be(true)
 	},
 	
 })

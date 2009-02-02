@@ -24,7 +24,7 @@ jQuery(function() {
         
     for(var i = 0; i < feedsUrls.length; i++) {
 
-      $('#todo').taskpaper({url: feedsUrls[i], load: null, tagsControl: '#tags', projectsControl: '#projects', success: function(feed) {
+      $('#todo').taskpaper({url: feedsUrls[i], load: null, tagsControl: '#tags', projectsControl: '#projects', filterControl: '#filter', success: function(feed) {
 	
     			// here's old school testing to the console
           console.log(feed)
@@ -55,7 +55,7 @@ jQuery(function() {
 <li>Select a tag from the drop-down to toggle highlight in the list</li>
 </ol>
 
-<div id="todocontrol"> <a href="?#">Show projects only</a> | <a href="?#">Show All</a>  | <a href="?#">Toggle</a>  | <span id="tags">Select a tag: </span> <span id="projects">Select a project:</span></div>
+<div id="todocontrol"> <a href="?#">Show projects only</a> | <a href="?#">Show All</a>  | <a href="?#">Toggle</a>  | <span id="tags">Select a tag: </span> <span id="projects">Select a project:</span> <span id="filter"/></div>
 
 <div><ul id="todo"></div>
 	
