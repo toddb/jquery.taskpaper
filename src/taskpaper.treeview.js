@@ -140,10 +140,12 @@ jQuery.fn.taskpaper.treeview = {}
       var re = /@([\w]+)|project\s?=\s?\"([\w-]+)\"|\'([\w\s]+)\'|([\w]+)/g
       filter = this.val().match(re, "$1")
       tree = $('.taskpaper') // hhhmmm, not sure about this - not very relative
-      $.each(filter, function(){
-        if (tag.test(this)) tree.filtertag(this.replace(tag, "$1"))
-        if (project.test(this)) tree.filterproject(this.replace(project, "$1"))
-      })
+      if (filter != null) {
+        $.each(filter, function(){
+          if (tag.test(this)) tree.filtertag(this.replace(tag, "$1"))
+          if (project.test(this)) tree.filterproject(this.replace(project, "$1"))
+        })
+      }
 		},
 		
 		
