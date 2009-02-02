@@ -135,10 +135,15 @@ jQuery.fn.taskpaper.treeview = {}
 		},
 		
 		filterBox: function(){
-      re = /@([\w]+)|project\s?=\s?\"([\w]+)\"|\'([\w\s]+)\'|([\w]+)/g
-      tag = this.val().match(re, "$1")
-      //console.log(tag)
-      // this.filtertag(tag)
+		  var tag = /@([\w]+)/
+		  var project = /project\s?=\s?\"([\w-]+)\"/
+      var re = /@([\w]+)|project\s?=\s?\"([\w-]+)\"|\'([\w\s]+)\'|([\w]+)/g
+      filter = this.val().match(re, "$1")
+      tree = $('.taskpaper') // hhhmmm, not sure about this - not very relative
+      $.each(filter, function(){
+        if (tag.test(this)) tree.filtertag(this.replace(tag, "$1"))
+        if (project.test(this)) tree.filterproject(this.replace(project, "$1"))
+      })
 		},
 		
 		
