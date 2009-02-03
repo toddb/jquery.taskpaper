@@ -50,6 +50,10 @@ jQuery.fn.taskpaper.treeview = {}
         })
       return list
 		},
+
+		item: function(tag){
+		  return this.find("span:contains("+tag+")")
+		},
 		
 		items: function(){
 		  return this.find("li>span")
@@ -96,14 +100,16 @@ jQuery.fn.taskpaper.treeview = {}
 		showAll: function() {
 		  return this.items().filter(function(){ $(this).parent().show()})		  
 		},
+
+		filteritem: function(tag){
+		  return this.item(tag).filter(function(){ $(this).parents('li').show() })
+		},
 		
 		filtertag: function(tag){
-		  this.hideAll()
 		  return this.tag(tag).filter(function(){ $(this).parents('li').show() })
 		},
 		
 		filterproject: function(tag){
-		  this.hideAll()
 		  return this.find('li>span.project:contains(' + tag + ')').filter(function(){ $(this).parents('li').show().end().siblings('ul').children('li').show() })
 		},
 		
@@ -112,7 +118,7 @@ jQuery.fn.taskpaper.treeview = {}
 		  tree = this
       $.each(this.tagslist(), function(){
         tag = this.valueOf()
-        ret.append($('<option/>').html(tag).attr('value', tag).click(function(){ tree.filtertag(this.value) }))  
+        ret.append($('<option/>').html(tag).attr('value', tag).click(function(){ $('#query').val('@'+this.value).keyup() }))  
       })
 		  return ret.appendTo(elem)
 		},
@@ -122,7 +128,7 @@ jQuery.fn.taskpaper.treeview = {}
 		  tree = this
       $.each(this.projectslist(), function(){
         tag = this.valueOf()
-        ret.append($('<option/>').html(tag).attr('value', tag).click(function(){ tree.filterproject(this.value) }))  
+        ret.append($('<option/>').html(tag).attr('value', tag).click(function(){ $('#query').val('project="'+this.value.replace(/\s+(.*)/, "$1")+'"').keyup() }))  
       })
 		  return ret.appendTo(elem)
 		},
@@ -135,19 +141,29 @@ jQuery.fn.taskpaper.treeview = {}
 		},
 		
 		filterBox: function(){
-		  var tag = /@([\w]+)/
-		  var project = /project\s?=\s?\"([\w-]+)\"/
-      var re = /@([\w]+)|project\s?=\s?\"([\w-]+)\"|\'([\w\s]+)\'|([\w]+)/g
-      filter = this.val().match(re, "$1")
       tree = $('.taskpaper') // hhhmmm, not sure about this - not very relative
+      
+		  var empty = /$\s?^/
+      if (empty.test(this.val())) return tree.showAll()
+
+      tree.hideAll()
+		  
+		  var tag = /@([\w]+)/i
+		  var project = /project\s?=\s?\"([\w-]+)\"/i
+		  var phrase = /\'([\w\s]+)\'/ig
+		  var word = /(\w+)\s/i
+      var re = /@\w+|project\s?=\s?\"[\w-\s]+\"|\'[\w\s]+\'|([\w]+\s)/ig
+     
+      filter = this.val().match(re)
       if (filter != null) {
         $.each(filter, function(){
           if (tag.test(this)) tree.filtertag(this.replace(tag, "$1"))
           if (project.test(this)) tree.filterproject(this.replace(project, "$1"))
+          if (phrase.test(this)) tree.filteritem(this.replace(phrase, "$1"))
+          if (word.test(this)) tree.filteritem(this.replace(word, "$1"))
         })
       }
 		},
-		
 		
 	})
 	

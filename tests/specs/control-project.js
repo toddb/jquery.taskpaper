@@ -25,11 +25,13 @@ describe('I need to select projects via drop down', {
 	},
 
 	'should show only selected project "Gen-i"':function(){
+	  $('#todo').hideAll()
 	  $('#todo').filterproject('Gen-i')
     value_of($('#todo').find('li:visible').size()).should_be(9)
  	},
  	
 	'should show only selected project "Invoices"':function(){
+	  $('#todo').hideAll()
 	  $('#todo').filterproject('Invoices')
     value_of($('#todo').find('li:visible').size()).should_be(5)
  	},

@@ -8,10 +8,8 @@ jQuery.fn.taskpaper = jQuery.fn.taskpaper.getResults = function(options) {
         success: null,
         feed: null,
 
-		load: function(feed){
-      // alert(feed.items)
-      console.log(feed.items)
-
+		    load: function(feed){
+ 
               function node(item, appendTo){
                 if (item.items == undefined) return
                 var parent = $().taskpaper.treeview.createNode( { 
@@ -56,7 +54,5 @@ jQuery.fn.taskpaper = jQuery.fn.taskpaper.getResults = function(options) {
     
     // add taskpaper class to activate styles
 		this.addClass("taskpaper");
-		
-    
-           
+        
 };

@@ -25,21 +25,25 @@ describe('I need to select tasks via tags drop down', {
 	},
 
 	'should show only tagged lines with @online':function(){
+	  $('#todo').hideAll()
 	  $('#todo').filtertag('online')
     value_of($('#todo').items().parents('li:visible').size()).should_be(10)
  	},
 	
 	'should show only tagged lines with @due':function(){
+	  $('#todo').hideAll()
 	  $('#todo').filtertag('due')
     value_of($('#todo').items().parents('li:visible').size()).should_be(10)
  	},
 	
 	'should show only tagged lines with @done':function(){
+	  $('#todo').hideAll()
 	  $('#todo').filtertag('done')
     value_of($('#todo').items().parents('li:visible').size()).should_be(4)
  	},
  	
 	'should show only tagged lines with @done':function(){
+	  $('#todo').hideAll()
 	  $('#todo').filtertag('email')
     value_of($('#todo').items().parents('li:visible').size()).should_be(11)
  	},
