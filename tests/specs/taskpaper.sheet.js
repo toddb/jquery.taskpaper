@@ -26,13 +26,13 @@ describe('I need to be able to manipulate the taskpaper sheet', {
 	},
 	
 	'should find any tags in lines': function(){
-	  value_of($('#todo').tags().size()).should_be(18)
+	  value_of($('#todo').tags().size()).should_be(21)
 	  value_of($('#todo').tag('due').size()).should_be(5)
 	  value_of($('#todo').tag('online').size()).should_be(6)
 	},
 	
 	'should return list of unique tags from lines (excludes "(xxxx)")': function(){
-	  value_of($('#todo').tagslist().length).should_be(5)	  
+	  value_of($('#todo').tagslist().length).should_be(7)	  
 	},
 
 	'should show only the projects': function(){
@@ -79,7 +79,7 @@ describe('I need to be able to manipulate the taskpaper sheet', {
 	'should create a select drop-down from tags and place after main': function(){
 	  $('#todo').selectTags('#main')
 	  value_of($('#main').find('>select').is(":visible")).should_be(true)
-	  value_of($('#main').find('>select>option').size()).should_be(5)
+	  value_of($('#main').find('>select>option').size()).should_be(7)
 	},
 	
 	'should hide all items': function(){

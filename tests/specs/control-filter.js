@@ -38,11 +38,11 @@ describe('I need to filter from a text box', {
   
   'should return any items and its projects when I have a filter with tags and words: done, invoices': function(){
     $('#query').val('@email').keyup()
-    value_of($('#todo').items().parents('li:visible').size()).should_be(9)
+    value_of($('#todo').items().parents('li:visible').size()).should_be(11)
     $('#query').val('@email network').keyup()
-    value_of($('#todo').items().parents('li:visible').size()).should_be(9)
+    value_of($('#todo').items().parents('li:visible').size()).should_be(11)
     $('#query').val('@email review ').keyup()
-    value_of($('#todo').items().parents('li:visible').size()).should_be(13)
+    value_of($('#todo').items().parents('li:visible').size()).should_be(15)
   },
 
   'should return any items and its projects when I have a filter with combined words using "Sam McDowell"': function(){
