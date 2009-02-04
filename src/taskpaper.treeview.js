@@ -12,10 +12,10 @@ jQuery.fn.taskpaper.treeview = {}
                           }, options);
 
       	var ret = $('<li/>')
-      			.html(parse(options.item.text))
+      			.html(addTagHandler(parse(options.item.text)))
       			.wrapInner($('<span>').addClass(options.item.type)).dblclick(function(){ $(this).find('>span.task').wrapInner($('<del/>')).append(' @done')})
       	 		.appendTo(options.appendTo)
-	
+	      
       	// a task or note row does not expand so should not be enclosed in a <ul/>
       	if (options.item.type == 'task' || options.item.type == 'note') 
       		return ret;
@@ -24,7 +24,12 @@ jQuery.fn.taskpaper.treeview = {}
       	function parse (text){
           re = /-\s(.*)\s(@done)(.*)/g;
       	  return text.replace(re, "- <del>$1</del> $2$3")
-      	} 
+      	}
+      	
+      	function addTagHandler(text){
+          re = /-\s(.*)\s(@)(\w+)(.*)/g;
+      	  return text.replace(re, "- $1 <a class='$3'>$2$3</a>$4")
+      	}
     }
 	})
 })(jQuery);
@@ -60,17 +65,18 @@ jQuery.fn.taskpaper.treeview = {}
 		},
 		
 		tags: function(){
-      return this.find("span:contains(@)")
+      return this.find("span>a:contains(@)")
   	},
 		
 		tag: function(tag){
-		  return this.find("span:contains(@"+tag+")")
+		  return this.find("span>a:contains(@"+tag+")")
 		},
 		
 		tagslist: function(){
 		  var list = new Array();
 		  var tags = this.tags().filter(function(){
-        re = /.*\s@([\w]+)[\(\w-\)]*/g;
+        // re = /.*\s@([\w]+)[\(\w-\)]*/g;
+        re = /@([\w]+)/g;
         list.push($(this).html().replace(re, "$1"))
         list = list.unique()
         return
@@ -163,6 +169,13 @@ jQuery.fn.taskpaper.treeview = {}
           if (word.test(this)) tree.filteritem(this.replace(word, "$1"))
         })
       }
+		},
+		
+		tagsHandler: function(){
+      $.each(this.tagslist(), function(){
+        console.warn(this.valueOf())
+        $('.'+this.valueOf()).click(function(){ $('#query').val(this.text).keyup() })
+      })		  
 		},
 		
 	})

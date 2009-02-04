@@ -54,8 +54,18 @@ describe('I need to be able to populate the taskpaper treeview', {
               appendTo: root 
               });
               
-    value_of($('#todo').html()).should_be('<li><span class="task">- <del>task</del> @done</span></li>')	  
+    value_of($('#todo').html()).should_be('<li><span class="task">- <del>task</del> <a class="done">@done</a></span></li>')	  
 	},
 	
+	'should parse a tag in an item and add a tag handler': function(){
+    item.text = '- task @email'
+    item.type = 'task'
+    parent = $().taskpaper.treeview.createNode( { 
+               item: item, 
+               appendTo: root 
+               });
+
+     value_of($('#todo').html()).should_be('<li><span class="task">- task <a class="email">@email</a></span></li>')	    
+	},
 
 })
