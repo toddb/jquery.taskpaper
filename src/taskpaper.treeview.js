@@ -134,7 +134,7 @@ jQuery.fn.taskpaper.treeview = {}
 		  tree = this
       $.each(this.projectslist(), function(){
         tag = this.valueOf()
-        ret.append($('<option/>').html(tag).attr('value', tag).click(function(){ $('#query').val('project="'+this.value.replace(/\s+(.*)/, "$1")+'"').keyup() }))  
+        ret.append($('<option/>').html(tag.replace(/\s/g, '&nbsp;')).attr('value', tag).click(function(){ $('#query').val('project="'+this.value.replace(/\s+(.*)/, "$1")+'"').keyup() }))  
       })
 		  return ret.appendTo(elem)
 		},
