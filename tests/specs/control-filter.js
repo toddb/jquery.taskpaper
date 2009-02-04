@@ -28,22 +28,26 @@ describe('I need to filter from a text box', {
 	},
 
   'should return any items and its projects when I have a filter eg review credit': function(){
-    $('#query').val('review').keyup()
+    $('#query').val('review ').keyup()
     value_of($('#todo').items().parents('li:visible').size()).should_be(6)
-    $('#query').val('review credit').keyup()
+    $('#query').val('review credit ').keyup()
+    value_of($('#todo').items().parents('li:visible').size()).should_be(6)
+    $('#query').val('\'review credit\'').keyup()
     value_of($('#todo').items().parents('li:visible').size()).should_be(3)
-  },
+ },
   
   'should return any items and its projects when I have a filter with tags and words: done, invoices': function(){
     $('#query').val('@email').keyup()
     value_of($('#todo').items().parents('li:visible').size()).should_be(11)
     $('#query').val('@email network').keyup()
-    value_of($('#todo').items().parents('li:visible').size()).should_be(5)
+    value_of($('#todo').items().parents('li:visible').size()).should_be(11)
+    $('#query').val('@email review ').keyup()
+    value_of($('#todo').items().parents('li:visible').size()).should_be(15)
   },
 
   'should return any items and its projects when I have a filter with combined words using "Sam McDowell"': function(){
     $('#query').val('\'Sam McDowell\'').keyup()
-    value_of($('#todo').items().parents('li:visible').size()).should_be(6)
+    value_of($('#todo').items().parents('li:visible').size()).should_be(2)
   },
 
   'should show all items when the filter is empty from a cancel button': function(){
