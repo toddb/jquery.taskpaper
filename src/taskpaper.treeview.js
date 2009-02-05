@@ -12,8 +12,8 @@ jQuery.fn.taskpaper.treeview = {}
                           }, options);
 
       	var ret = $('<li/>')
-      			.html(addTagHandler(parse(options.item.text)))
-      			.wrapInner($('<span>').addClass(options.item.type)).dblclick(function(){ $(this).find('>span.task').wrapInner($('<del/>')).append(' @done')})
+      			.html(addTagHandler(addStrikethroughOnDone(options.item.text)))
+      			.wrapInner($('<span>').addClass(options.item.type)).dblclick(addDoneHandler())
       	 		.appendTo(options.appendTo)
 	      
       	// a task or note row does not expand so should not be enclosed in a <ul/>
@@ -21,16 +21,16 @@ jQuery.fn.taskpaper.treeview = {}
       		return ret;
       	return $('<ul/>').appendTo(ret)
 	
-      	function parse (text){
-          re = /-\s(.*)\s(@done)(.*)/g;
-      	  return text.replace(re, "- <del>$1</del> $2$3")
+      	function addStrikethroughOnDone (text){
+      	  return text.replace(/-\s(.*)\s(@done)(.*)/g, "- <del>$1</del> $2$3")
       	}
       	
       	function addTagHandler(text){
-          re = /\s@(\w+)/g;
-      	  return text.replace(re, " <a class='$1'>@$1</a>")
-          //           re = /-\s(.*)\s(@)(\w+)(.*)/g;
-          // return text.replace(re, "- $1 <a class='$3'>$2$3</a>$4")
+      	  return text.replace(/\s@(\w+)/g, " <a class='$1'>@$1</a>")
+      	}
+      	
+      	function addDoneHandler(){
+      	  return function(){ $(this).unbind('dblclick').find('>span.task').wrapInner($('<del/>')).append(' <a class="done">@done</a>')}
       	}
     }
 	})
@@ -175,7 +175,6 @@ jQuery.fn.taskpaper.treeview = {}
 		
 		tagsHandler: function(){
       $.each(this.tagslist(), function(){
-        console.warn(this.valueOf())
         $('.'+this.valueOf()).click(function(){ $('#query').val(this.text).keyup() })
       })		  
 		},
