@@ -13,7 +13,7 @@ jQuery.fn.taskpaper.treeview = {}
 
       	var ret = $('<li/>')
       			.html(addTagHandler(addStrikethroughOnDone(options.item.text)))
-      			.wrapInner($('<span>').addClass(options.item.type)).dblclick(addDoneHandler())
+      			.wrapInner($('<span contenteditable>').addClass(options.item.type)).dblclick(addDoneHandler())
       	 		.appendTo(options.appendTo)
 	      
       	// a task or note row does not expand so should not be enclosed in a <ul/>
@@ -31,6 +31,10 @@ jQuery.fn.taskpaper.treeview = {}
       	
       	function addDoneHandler(){
       	  return function(){ $(this).unbind('dblclick').find('>span.task').wrapInner($('<del/>')).append(' <a class="done">@done</a>')}
+      	}
+      	
+      	function addEditHandler(){
+      	  return function(){ $(this)}
       	}
     }
 	})

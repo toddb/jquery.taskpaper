@@ -1,5 +1,15 @@
-.taskpaper li { padding: 3px 0 2px 16px; }
-.taskpaper span.project, .taskpaper span.task { padding: 1px 0 1px 25px; display: block; }
+.taskpaper, .treeview ul { 
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.taskpaper ul {
+	background-color: white;
+	margin-top: 4px;
+}
+.taskpaper li { padding: 3px 0 2px 16px; 	list-style: none;}
+.taskpaper span.project, .taskpaper span.task, .taskpaper span.note { padding: 1px 0 1px 25px; display: block; }
 .taskpaper span.project { 
   background: url(../images/project.gif) 0 60% no-repeat; 
   font-size: large; 
@@ -7,13 +17,3 @@
   font-weight: bold;
   font-family: 'trebuchet ms', verdana, arial;
   }
-.taskpaper li.expandable span.project { background: url(../images/project-closed.gif) 0 60% no-repeat; }
-.taskpaper span.task { background: url(../images/task.gif) 0 0 no-repeat; }
-.taskpaper span.highlighted { font-weight: bold; font-color: #f00; }
-
-/* treeview overrides to remove tree lines */
-.treeview li { background: url() 0 0 no-repeat; }
-.treeview .hitarea { background: url() -64px -25px no-repeat; }
-.treeview li.lastCollapsable, .treeview li.lastExpandable { background-image: url(); }  
-
-
