@@ -18,7 +18,7 @@ describe('I need to be able to populate the taskpaper treeview', {
               appendTo: root 
               });
               
-    value_of($('#todo').html()).should_be('<li><span class="project">Project:</span><ul></ul></li>')
+    value_of($('#todo').html()).should_be('<li><span contenteditable="true" class="project">Project:</span><ul></ul></li>')
 	},
 
 	'should load up the task in the tree': function(){
@@ -30,7 +30,7 @@ describe('I need to be able to populate the taskpaper treeview', {
               appendTo: root 
               });
               
-    value_of($('#todo').html()).should_be('<li><span class="task">- task</span></li>')
+    value_of($('#todo').html()).should_be('<li><span contenteditable="true" class="task">- task</span></li>')
 	},
 
 	'should load up the task in the tree': function(){
@@ -42,7 +42,7 @@ describe('I need to be able to populate the taskpaper treeview', {
               appendTo: root 
               });
               
-    value_of($('#todo').html()).should_be('<li><span class="note">a note</span></li>')
+    value_of($('#todo').html()).should_be('<li><span contenteditable="true" class="note">a note</span></li>')
 	},
 	
 	'should parse a @done tag and format with a strikethrough': function(){
@@ -54,7 +54,7 @@ describe('I need to be able to populate the taskpaper treeview', {
               appendTo: root 
               });
               
-    value_of($('#todo').html()).should_be('<li><span class="task">- <del>task</del> <a class="done">@done</a></span></li>')	  
+    value_of($('#todo').html()).should_be('<li><span contenteditable="true" class="task">- <del>task</del> <a class="done">@done</a></span></li>')	  
 	},
 	
 	'should parse a tag in an item and add a tag handler': function(){
@@ -65,7 +65,7 @@ describe('I need to be able to populate the taskpaper treeview', {
                appendTo: root 
                });
 
-     value_of($('#todo').html()).should_be('<li><span class="task">- task <a class="email">@email</a></span></li>')	    
+     value_of($('#todo').html()).should_be('<li><span contenteditable="true" class="task">- task <a class="email">@email</a></span></li>')	    
 	},
 
 })
