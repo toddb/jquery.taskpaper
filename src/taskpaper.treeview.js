@@ -127,6 +127,7 @@ jQuery.fn.taskpaper.treeview = {}
 		
 		selectTags: function(elem){
 		  ret = $("<select/>")
+		  ret.append($('<option selected/>').html('-- filter by tag @ --'))
 		  tree = this
       $.each(this.tagslist(), function(){
         tag = this.valueOf()
@@ -137,6 +138,7 @@ jQuery.fn.taskpaper.treeview = {}
 
 		selectProjects: function(elem){
 		  ret = $("<select/>")
+		  ret.append($('<option/>').html('-- filter by project @ --'))
 		  tree = this
       $.each(this.projectslist(), function(){
         tag = this.valueOf()

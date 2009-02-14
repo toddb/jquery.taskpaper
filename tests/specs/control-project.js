@@ -21,7 +21,7 @@ describe('I need to select projects via drop down', {
 	'should only show projects in a drop-down': function(){
 	  $('#todo').selectProjects('#main')
 	  value_of($('#main').find('>select').is(":visible")).should_be(true)
-	  value_of($('#main').find('>select>option').size()).should_be(10)
+	  value_of($('#main').find('>select>option').size()).should_be(11)
 	},
 
 	'should show only selected project "Gen-i"':function(){

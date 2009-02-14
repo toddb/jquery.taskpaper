@@ -21,7 +21,7 @@ describe('I need to select tasks via tags drop down', {
 	'should only show projects which have tagged lines': function(){
 	  $('#todo').selectTags('#main')
 	  value_of($('#main').find('>select').is(":visible")).should_be(true)
-	  value_of($('#main').find('>select>option').size()).should_be(7)
+	  value_of($('#main').find('>select>option').size()).should_be(8)
 	},
 
 	'should show only tagged lines with @online':function(){
