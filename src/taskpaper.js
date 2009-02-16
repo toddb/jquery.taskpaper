@@ -1,7 +1,7 @@
 jQuery.fn.taskpaper = {}
 
 jQuery.fn.taskpaper = jQuery.fn.taskpaper.getResults = function(options) {
-    options = jQuery.extend({
+    options = $.extend({
     
         url: null,
         data: this,
@@ -24,7 +24,10 @@ jQuery.fn.taskpaper = jQuery.fn.taskpaper.getResults = function(options) {
 		        this.feed = feed
             var parent = this.data
             
-            $.each(feed.items, function() { node(this, parent)} )              
+            $.each(feed.items, function() { node(this, parent)} )
+            
+            // FIXME - this should be in the taskpaper.treeview - but it isn't binding nicely -- hhhhmmmm
+            $().bindItems()
             
 					},
         
@@ -41,14 +44,15 @@ jQuery.fn.taskpaper = jQuery.fn.taskpaper.getResults = function(options) {
             
             success: function(taskpaper) {
                 var feed = new taskpaperResults(taskpaper);
-                
-                if(jQuery.isFunction(options.load)) options.load(feed)
-                if(jQuery.isFunction(options.success)) options.success(feed)
+
+                if($.isFunction(options.load)) options.load(feed)
+                if($.isFunction(options.success)) options.success(feed)
                 
                 if (options.tagsControl) options.data.selectTags(options.tagsControl)
                 if (options.projectsControl) options.data.selectProjects(options.projectsControl)
                 if (options.filterControl) options.data.textFilter(options.filterControl)
                 options.data.tagsHandler()
+      
             }
         });
     }

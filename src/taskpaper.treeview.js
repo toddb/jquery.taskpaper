@@ -10,10 +10,13 @@ jQuery.fn.taskpaper.treeview = {}
                           item: null,
                           appendTo: null   
                           }, options);
-
+        
+ 
       	var ret = $('<li/>')
       			.html(addTagHandler(addStrikethroughOnDone(options.item.text)))
-      			.wrapInner($('<span contenteditable="true">').addClass(options.item.type)).dblclick(addDoneHandler())
+      			.wrapInner($('<span contenteditable="true">')
+      			  .addClass(options.item.type))
+      			.dblclick(addDoneHandler())
       	 		.appendTo(options.appendTo)
 	      
       	// a task or note row does not expand so should not be enclosed in a <ul/>
@@ -32,7 +35,7 @@ jQuery.fn.taskpaper.treeview = {}
       	function addDoneHandler(){
       	  return function(){ $(this).unbind('dblclick').find('>span.task').wrapInner($('<del/>')).append(' <a class="done">@done</a>')}
       	}
-      	
+      	      	
       	function addEditHandler(){
       	  return function(){ $(this)}
       	}
@@ -184,6 +187,28 @@ jQuery.fn.taskpaper.treeview = {}
         $('.'+this.valueOf()).click(function(){ $('#query').val(this.text).keyup() })
       })		  
 		},
+		
+		bindItems: function(){ // see jquery.hotkeys.js if a more generic implementation is needed
+		  $('span.task,span.project,span.note').bind('keypress', function(event) {
+        switch(event.which)
+        {
+          case 58:  // : project
+            break;    
+          case 45: // - task
+            break;
+          case 13:  // enter
+            // console.log(this)
+            $('<li><span class="task" contenteditable="true">- </span></li>')
+              .hide().focus()
+              .insertAfter($(this).parent(':first'))
+              .slideDown("slow")
+            break;
+          default:
+          
+        }
+  	  })
+		},
+		
 		
 	})
 	
