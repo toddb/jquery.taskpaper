@@ -189,7 +189,7 @@ jQuery.fn.taskpaper.treeview = {}
 		},
 		
 		bindItems: function(){    // see jquery.hotkeys.js if a more generic implementation is needed
-		  $('span.task,span.project,span.note')
+		  $().items()
 		    .unbind('keypress')   // FIXME - only need this because .live isn't working  
 		    .bind('keypress', function(event) {
           switch(event.which)
