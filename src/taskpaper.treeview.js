@@ -188,25 +188,34 @@ jQuery.fn.taskpaper.treeview = {}
       })		  
 		},
 		
-		bindItems: function(){ // see jquery.hotkeys.js if a more generic implementation is needed
-		  $('span.task,span.project,span.note').bind('keypress', function(event) {
-        switch(event.which)
-        {
-          case 58:  // : project
-            break;    
-          case 45: // - task
-            break;
-          case 13:  // enter
-            // console.log(this)
-            $('<li><span class="task" contenteditable="true">- </span></li>')
-              .hide().focus()
-              .insertAfter($(this).parent(':first'))
-              .slideDown("slow")
-            break;
-          default:
+		bindItems: function(){    // see jquery.hotkeys.js if a more generic implementation is needed
+		  $('span.task,span.project,span.note')
+		    .unbind('keypress')   // FIXME - only need this because .live isn't working  
+		    .bind('keypress', function(event) {
+          switch(event.which)
+          {
+            case 58:  // : project
+              break;    
+            case 8:   // delete when at the start of an item remove
+              break;    
+            case 45:  // - task
+              break;
+            case 13:  // enter
+              ret = $('<li/>')  // DRY this li>span
+                .html($('<span contenteditable="true">')
+                  .addClass('task')
+                  .html($(this).html()))
+                .hide()
+                .insertBefore($(this).parent(':first'))
+                .slideDown("slow")
+
+              $(this).html('-&nbsp;')
+              $().bindItems()
+              break;
+            default:
           
-        }
-  	  })
+          }
+    	  })
 		},
 		
 		
@@ -227,3 +236,5 @@ Array.prototype.unique = function () {
   for (value in hash) {array.push(value)};
   return array;
 }
+
+
