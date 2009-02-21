@@ -2,7 +2,7 @@ describe('I need to be able to edit items', {
   
   before_all: function() {
     $('<ul id="todo">').appendTo('#main')
-		$('#todo').taskpaper({ url: 'data/sample.taskpaper'	})
+		$('#todo').taskpaper({ url: 'data/simple-item.taskpaper'	})
  	},
 	
 	after_all: function(){
@@ -16,7 +16,11 @@ describe('I need to be able to edit items', {
 	},
 	
 	'should create a new item if I press enter': function(){
-	  
+	  tasks = $('#todo').tasks().size()	
+		task = $('#todo').tasks().filter(':last').focus()
+    task.__keypress(13)
+        
+		value_of($('#todo').tasks().size()).should_be(tasks + 1)
 	},
 	
 	'should take the characters to the right of the cursor across to the next line when pressing enter': function(){
@@ -24,7 +28,11 @@ describe('I need to be able to edit items', {
 	},
 	
 	'should create the next item as a task by default': function(){
-	  
+	  tasks = $('#todo').tasks().size()
+		task = $('#todo').tasks().filter(':last').focus()
+    task.__keypress(13)
+        
+		value_of($('#todo').tasks().size()).should_be(tasks + 1)	
 	},
 	
 	'should be able to reorder items': function(){

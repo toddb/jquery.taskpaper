@@ -191,31 +191,32 @@ jQuery.fn.taskpaper.treeview = {}
 		bindItems: function(){    // see jquery.hotkeys.js if a more generic implementation is needed
 		  $().items()
 		    .unbind('keypress')   // FIXME - only need this because .live isn't working  
-		    .bind('keypress', function(event) {
-          switch(event.which)
-          {
-            case 58:  // : project
-              break;    
-            case 8:   // delete when at the start of an item remove
-              break;    
-            case 45:  // - task
-              break;
-            case 13:  // enter
-              ret = $('<li/>')  // DRY this li>span
-                .html($('<span contenteditable="true">')
-                  .addClass('task')
-                  .html($(this).html()))
-                .hide()
-                .insertBefore($(this).parent(':first'))
-                .slideDown("slow")
+		    .bind('keypress', function(event){$().__keypress(event.which)})
+		},
+				
+		__keypress: function(which){
+      switch(which)
+      {
+        case 58:  // : project
+          break;    
+        case 8:   // delete when at the start of an item remove
+          break;    
+        case 45:  // - task
+          break;
+        case 13:  // enter
+          ret = $('<li/>')  // DRY this li>span
+            .html($('<span contenteditable="true">')
+              .addClass('task')
+              .html($(this).html()))
+            .hide()
+            .insertBefore($(this).parent(':first'))
+            .slideDown("slow")
 
-              $(this).html('-&nbsp;')
-              $().bindItems()
-              break;
-            default:
-          
-          }
-    	  })
+          $(this).html('-&nbsp;')
+          $().bindItems()
+          break;
+        default:
+      }		  
 		},
 		
 		
