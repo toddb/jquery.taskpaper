@@ -15,6 +15,14 @@ describe('I need to be able to edit items', {
 	'should update the project list if a project is changed': function(){
 	},
 	
+	'should create a project if a : is entered at the end of a list': function(){
+	  projects = $('#todo').projects().size()	
+		item = $('#todo').tasks().filter(':last').focus()
+    $().__keypress(58, item)
+        
+		value_of($('#todo').projects().size()).should_be(projects + 1)
+	},
+	
 	'should create a new item if I press enter': function(){
 	  tasks = $('#todo').tasks().size()	
 		task = $('#todo').tasks().filter(':last').focus()
@@ -46,6 +54,13 @@ describe('I need to be able to edit items', {
 	'should be able to convert a task to a project via ctl-p': function(){
 	  
 	},
-
 	
+	'should be able to move up and down items via the up and down arrows': function(){
+	  
+	},
+
+  'should when pressing enter at the end of project add a task and keep the project above': function(){
+    
+  },
+  	
 })
