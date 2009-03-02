@@ -18,7 +18,7 @@ describe('I need to be able to edit items', {
 	'should create a project if a : is entered at the end of a list': function(){
 	  projects = $('#todo').projects().size()	
 		item = $('#todo').tasks().filter(':last').focus()
-    $().__keypress(58, item)
+    item.__keypress(58)
         
 		value_of($('#todo').projects().size()).should_be(projects + 1)
 	},
