@@ -58,7 +58,7 @@
 		},
 		
 		isInItem: function() {
-		  var sel = $().selection()
+		  var sel = $.selection()
       if (sel.anchorNode != sel.focusNode) return false
       if (!$(sel.anchorNode.parentNode).is('span.task,span.note,span.project')) return false
       if (!$(sel.focusNode.parentNode).is('span.task,span.note,span.project')) return false
@@ -66,11 +66,11 @@
 		},
 		
 		isAtStartOfEmptyItem: function() {  
-      return ($.trim($().selection().anchorNode.data).length == 0 && this.isInItem()) ? true : false
+      return ($.trim($.selection().anchorNode.data).length == 0 && this.isInItem()) ? true : false
 		},
 				
 		isAtEndOfItem: function() {
-      return ($().selection().focusOffset == $().selection().focusNode.length && this.isInItem()) ? true : false	  	  
+      return ($.selection().focusOffset == $.selection().focusNode.length && this.isInItem()) ? true : false	  	  
 		},
 		
     prevItem: function() {
