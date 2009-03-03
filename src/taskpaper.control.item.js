@@ -35,8 +35,7 @@
 		appendItemToItem: function() {
 		  var span = $('<span contenteditable="true">')
             .addClass('task')
-            .html('<br/>')
-            
+            .html('&nbsp;')     
 		  var item = $('<li>').append(span).insertAfter(this.parent(':first')).hide().slideDown('slow')
 		  // focus must come last
       span.focus()
@@ -58,10 +57,6 @@
       return new_item
 		},
 		
-		isAtStartOfEmptyItem: function() {  
-      return ($.trim($().selection().anchorNode.data).length == 0 && this.isInItem()) ? true : false
-		},
-		
 		isInItem: function() {
 		  var sel = $().selection()
       if (sel.anchorNode != sel.focusNode) return false
@@ -70,18 +65,12 @@
 		  return true
 		},
 		
-		
+		isAtStartOfEmptyItem: function() {  
+      return ($.trim($().selection().anchorNode.data).length == 0 && this.isInItem()) ? true : false
+		},
+				
 		isAtEndOfItem: function() {
       return ($().selection().focusOffset == $().selection().focusNode.length && this.isInItem()) ? true : false	  	  
-		},
-		
-		selection: function() {
-      if (window.getSelection) {
-      	return window.getSelection();
-      }
-      else if (document.selection) { // should come last; Opera!
-      	return document.selection.createRange();
-      }
 		},
 		
     prevItem: function() {

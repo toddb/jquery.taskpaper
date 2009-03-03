@@ -4,8 +4,10 @@ SRC_DIR = src
 BUILD_DIR = build
 
 JS_FILES = ${SRC_DIR}/taskpaper.treeview.js\
+ ${SRC_DIR}/jquery.fn.js\
  ${SRC_DIR}/taskpaperresults.js\
  ${SRC_DIR}/taskpaperitem.js\
+ ${SRC_DIR}/taskpaper.control.item.js\
  ${SRC_DIR}/taskpaper.js
 
 RELEASE_FILES = todo README changelog.txt GPL-license.txt MIT-license.txt
