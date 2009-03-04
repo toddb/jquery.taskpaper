@@ -109,7 +109,7 @@
       return this.parent().prev().find('span')
     },
     
-    item: function() {
+    thisitem: function() {
       return this.parents('li:first')      
     },
     

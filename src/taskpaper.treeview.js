@@ -177,7 +177,7 @@ jQuery.fn.taskpaper.treeview = {}
           if (project.test(this)) tree.filterproject(this.replace(project, "$1"))
           if (phrase.test(this)) tree.filteritem(this.replace(phrase, "$1"))
           if (word.test(this)) tree.filteritem(this.replace(word, "$1"))
-        })
+       })
       }
 		},
 		
