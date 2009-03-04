@@ -15,13 +15,16 @@ jQuery.fn.taskpaper.treeview = {}
     },
     
     item: function(text, type, appendTo){
-      var editable_content = $('<li/>')
-      			.html(this.addTagHandler(this.addStrikethroughOnDone(text)))
-      			.wrapInner($('<span contenteditable="true">')
-      			  .addClass(type))
-      			.dblclick(this.addDoneHandler())
-      	 		.appendTo(appendTo)
-      return (type == 'task' || type == 'note') ? editable_content : $('<ul/>').appendTo(editable_content)     
+      var content = this.editable_content(text, type).appendTo(appendTo)
+      return (type == 'task' || type == 'note') ? content : $('<ul/>').appendTo(content)     
+    },
+    
+    editable_content: function(text, type) {
+      return $('<li/>')
+  			.html(this.addTagHandler(this.addStrikethroughOnDone(text)))
+  			.wrapInner($('<span contenteditable="true">')
+  			  .addClass(type))
+  			.dblclick(this.addDoneHandler())
     },
     
     addStrikethroughOnDone: function(text){
@@ -132,9 +135,9 @@ jQuery.fn.taskpaper.treeview = {}
         tag = this.valueOf()
         ret.append($('<option/>').html(tag).attr('value', tag).click(function(){ $('#query').val('@'+this.value).keyup() }))  
       })
-		  return ret.appendTo(elem)
+		  return $(elem).empty().html(ret)
 		},
-
+		
 		selectProjects: function(elem){
 		  ret = $("<select/>")
 		  ret.append($('<option/>').html('-- filter by project @ --'))
@@ -143,14 +146,14 @@ jQuery.fn.taskpaper.treeview = {}
         tag = this.valueOf()
         ret.append($('<option/>').html(tag.replace(/\s/, '&nbsp;')).attr('value', tag).click(function(){ $('#query').val('project="'+this.value.replace(/\s+(.*)/, "$1")+'"').keyup() }))  
       })
-		  return ret.appendTo(elem)
+		  return $(elem).empty().html(ret)
 		},
 		
 		textFilter: function(elem){
 		  ret = $('<label for="query"><span>Filter: </span></label>')
 		  $('<input id="query" type="text" value="" name="q"/>').keyup(function(){ $(this).filterBox() }).appendTo(ret)
 		  $('<button>').html('Cancel').click(function(){ $('input#query').val(''); $('#todo').showAll() }).appendTo(ret)
-      return ret.appendTo(elem)
+      return $(elem).empty().html(ret)
 		},
 		
 		filterBox: function(){
