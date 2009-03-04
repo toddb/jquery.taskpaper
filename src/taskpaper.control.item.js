@@ -26,11 +26,17 @@
       switch(which)
       {
         case KEYS.PROJECT:
-          if (this.isAtEndOfItem()) {this.addClass("project").removeClass('note').removeClass('task')}
+          if (this.isAtEndOfItem()) {
+            this.addClass("project").removeClass('note').removeClass('task')
+            $('#todo').selectProjects('#projects')
+            }
           break;    
         case KEYS.DELETE:
           if (this.isAtStartOfEmptyItem()) this.removeItem()
-          if (this.isAtEndOfItem()) {this.removeClass("project").addClass('note')}          
+          if (this.isAtEndOfItem()) {
+            this.removeClass("project").addClass('note')
+            $('#todo').selectProjects('#projects')
+            }          
           break;    
         case KEYS.TASK:
           if (this.isAtStartOfEmptyItem()) {this.addClass("task").removeClass('note')}
@@ -44,8 +50,7 @@
  
           update.item().replaceWith($.fn.taskpaper.treeview.editable_content(update.item().text(), update.attr('class')))
           $('#todo').selectTags('#tags')
-          $('#todo').selectProjects('#projects')
-          // check that the preceeding character is not a : because then it needs to leave the previous line as project!
+         // check that the preceeding character is not a : because then it needs to leave the previous line as project!
           break;
         case KEYS.UP:
           if (this.parent().is(':first-child')) {
