@@ -26,7 +26,7 @@
       switch(which)
       {
         case KEYS.PROJECT:
-          if (this.isAtEndOfItem()) this.addClass("project")
+          if (this.isAtEndOfItem()) {this.addClass("project").removeClass('note').removeClass('task')}
           break;    
         case KEYS.DELETE:
           if (this.isAtStartOfEmptyItem()) this.removeItem()
