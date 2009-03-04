@@ -30,10 +30,10 @@
           break;    
         case KEYS.DELETE:
           if (this.isAtStartOfEmptyItem()) this.removeItem()
-          if (this.isAtEndOfItem()) this.removeClass("project")          
+          if (this.isAtEndOfItem()) {this.removeClass("project").addClass('note')}          
           break;    
         case KEYS.TASK:
-          if (this.isAtStartOfEmptyItem()) this.addClass("task")
+          if (this.isAtStartOfEmptyItem()) {this.addClass("task").removeClass('note')}
           break;
         case KEYS.ENTER:
           if (this.isAtStartOfEmptyItem()) return false
