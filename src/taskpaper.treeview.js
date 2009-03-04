@@ -10,36 +10,32 @@ jQuery.fn.taskpaper.treeview = {}
                           item: null,
                           appendTo: null   
                           }, options);
-        
- 
-      	var ret = $('<li/>')
-      			.html(addTagHandler(addStrikethroughOnDone(options.item.text)))
+
+	      return this.item(options.item.text, options.item.type, options.appendTo)
+    },
+    
+    item: function(text, type, appendTo){
+      var editable_content = $('<li/>')
+      			.html(this.addTagHandler(this.addStrikethroughOnDone(text)))
       			.wrapInner($('<span contenteditable="true">')
-      			  .addClass(options.item.type))
-      			.dblclick(addDoneHandler())
-      	 		.appendTo(options.appendTo)
-	      
-      	// a task or note row does not expand so should not be enclosed in a <ul/>
-      	if (options.item.type == 'task' || options.item.type == 'note') 
-      		return ret;
-      	return $('<ul/>').appendTo(ret)
-	
-      	function addStrikethroughOnDone (text){
-      	  return text.replace(/-\s(.*)\s(@done)(.*)/g, "- <del>$1</del> $2$3")
-      	}
-      	
-      	function addTagHandler(text){
-      	  return text.replace(/\s@(\w+)/g, " <a class='$1'>@$1</a>")
-      	}
-      	
-      	function addDoneHandler(){
-      	  return function(){ $(this).unbind('dblclick').find('>span.task').wrapInner($('<del/>')).append(' <a class="done">@done</a>')}
-      	}
-      	      	
-      	function addEditHandler(){
-      	  return function(){ $(this)}
-      	}
-    }
+      			  .addClass(type))
+      			.dblclick(this.addDoneHandler())
+      	 		.appendTo(appendTo)
+      return (type == 'task' || type == 'note') ? editable_content : $('<ul/>').appendTo(editable_content)     
+    },
+    
+    addStrikethroughOnDone: function(text){
+  	  return text.replace(/-\s(.*)\s(@done)(.*)/g, "- <del>$1</del> $2$3")
+  	},
+  	
+  	addTagHandler: function(text){
+  	  return text.replace(/\s@(\w+)/g, " <a class='$1'>@$1</a>")
+  	},
+  	
+  	addDoneHandler: function(){
+  	  return function(){ $(this).unbind('dblclick').find('>span.task').wrapInner($('<del/>')).append(' <a class="done">@done</a>')}
+  	},
+  	      	 	
 	})
 })(jQuery);
 
@@ -158,7 +154,7 @@ jQuery.fn.taskpaper.treeview = {}
 		},
 		
 		filterBox: function(){
-      tree = $('.taskpaper') // hhhmmm, not sure about this - not very relative
+      tree = $("."+CLASSES.taskpaper) // hhhmmm, not sure about this - not very relative
       
 		  var empty = /$\s?^/
       if (empty.test(this.val())) return tree.showAll()
@@ -193,7 +189,8 @@ jQuery.fn.taskpaper.treeview = {}
 	// classes used by the plugin
 	// need to be styled via external stylesheet, see first example
 	var CLASSES = $.fn.taskpaper.treeview.classes = {
-		highlighted: "highlighted"
+		highlighted: "highlighted",
+		taskpaper:   "taskpaper"
 	};
 	
 })(jQuery);

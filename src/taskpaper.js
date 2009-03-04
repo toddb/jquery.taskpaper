@@ -58,6 +58,6 @@ jQuery.fn.taskpaper = jQuery.fn.taskpaper.getResults = function(options) {
     }
     
     // add taskpaper class to activate styles
-		this.addClass("taskpaper");
+		this.addClass($.fn.taskpaper.treeview.classes.taskpaper);
         
 };
