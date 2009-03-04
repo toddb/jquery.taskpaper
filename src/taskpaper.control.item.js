@@ -43,7 +43,7 @@
           this.appendItemToItem() // && parse line to add tags // if task
  
           update.item().replaceWith($.fn.taskpaper.treeview.editable_content(update.item().text(), update.attr('class')))
-          $('#todo').selectTags($('#tags'))
+          $('#todo').selectTags('#tags')
           // check that the preceeding character is not a : because then it needs to leave the previous line as project!
           break;
         case KEYS.UP:

@@ -127,7 +127,7 @@ jQuery.fn.taskpaper.treeview = {}
 		  return this.find('li>span.project:contains(' + tag + ')').filter(function(){ $(this).parents('li').show().end().siblings('ul').children('li').show() })
 		},
 		
-		selectTags: function(elem){
+		selectTags: function(expr){
 		  ret = $("<select/>")
 		  ret.append($('<option selected/>').html('-- filter by tag @ --'))
 		  tree = this
@@ -135,10 +135,10 @@ jQuery.fn.taskpaper.treeview = {}
         tag = this.valueOf()
         ret.append($('<option/>').html(tag).attr('value', tag).click(function(){ $('#query').val('@'+this.value).keyup() }))  
       })
-		  return $(elem).empty().html(ret)
+		  return $(expr).html(ret)
 		},
 		
-		selectProjects: function(elem){
+		selectProjects: function(expr){
 		  ret = $("<select/>")
 		  ret.append($('<option/>').html('-- filter by project @ --'))
 		  tree = this
@@ -146,18 +146,18 @@ jQuery.fn.taskpaper.treeview = {}
         tag = this.valueOf()
         ret.append($('<option/>').html(tag.replace(/\s/, '&nbsp;')).attr('value', tag).click(function(){ $('#query').val('project="'+this.value.replace(/\s+(.*)/, "$1")+'"').keyup() }))  
       })
-		  return $(elem).empty().html(ret)
+		  return $(expr).html(ret)
 		},
 		
 		textFilter: function(elem){
 		  ret = $('<label for="query"><span>Filter: </span></label>')
 		  $('<input id="query" type="text" value="" name="q"/>').keyup(function(){ $(this).filterBox() }).appendTo(ret)
 		  $('<button>').html('Cancel').click(function(){ $('input#query').val(''); $('#todo').showAll() }).appendTo(ret)
-      return $(elem).empty().html(ret)
+      return ret.appendTo(elem)
 		},
 		
 		filterBox: function(){
-      tree = $("."+CLASSES.taskpaper) // hhhmmm, not sure about this - not very relative
+      tree = $("."+CLASSES.taskpaper)
       
 		  var empty = /$\s?^/
       if (empty.test(this.val())) return tree.showAll()

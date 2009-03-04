@@ -77,9 +77,10 @@ describe('I need to be able to manipulate the taskpaper sheet', {
 	},
 	
 	'should create a select drop-down from tags and place after main': function(){
-	  $('#todo').selectTags('#main')
-	  value_of($('#main').find('>select').is(":visible")).should_be(true)
-	  value_of($('#main').find('>select>option').size()).should_be(8)
+	  $('<span id="tasks"/>').appendTo('#main')
+    $('#todo').selectTags('#tasks')
+    value_of($('#tasks').find('>select').is(":visible")).should_be(true)
+    value_of($('#tasks').find('>select>option').size()).should_be(8)
 	},
 	
 	'should hide all items': function(){
