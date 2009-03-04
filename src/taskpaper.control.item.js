@@ -44,6 +44,7 @@
  
           update.item().replaceWith($.fn.taskpaper.treeview.editable_content(update.item().text(), update.attr('class')))
           $('#todo').selectTags('#tags')
+          $('#todo').selectProjects('#projects')
           // check that the preceeding character is not a : because then it needs to leave the previous line as project!
           break;
         case KEYS.UP:
@@ -109,7 +110,7 @@
       return this.parent().prev().find('span')
     },
     
-    thisitem: function() {
+    asSelf: function() {
       return this.parents('li:first')      
     },
     
