@@ -18,7 +18,13 @@ describe('I need to be able to populate the taskpaper treeview', {
               appendTo: root 
               });
               
-    value_of($('#todo').html()).should_be('<li><span contenteditable="true" class="project">Project:</span><ul></ul></li>')
+    // value_of($('#todo').html()).should_be('<li><span contenteditable="true" class="project">Project:</span><ul></ul></li>')
+    value_of($('#todo').find(':first-child')[0].nodeName).should_be('LI')
+    value_of($('#todo').find(':first-child')[1].nodeName).should_be('SPAN')
+    value_of($($('#todo').find(':first-child')[1]).attr('contenteditable')).should_be_true
+
+    value_of($($('#todo').find(':first-child')[1]).hasClass('project')).should_be_true
+    value_of($($('#todo').find(':first-child')[1]).text()).should_be('Project:')
 	},
 
 	'should load up the task in the tree': function(){
@@ -30,7 +36,13 @@ describe('I need to be able to populate the taskpaper treeview', {
               appendTo: root 
               });
               
-    value_of($('#todo').html()).should_be('<li><span contenteditable="true" class="task">- task</span></li>')
+    // value_of($('#todo').html()).should_be('<li><span contenteditable="true" class="task">- task</span></li>')
+    value_of($('#todo').find(':first-child')[0].nodeName).should_be('LI')
+    value_of($('#todo').find(':first-child')[1].nodeName).should_be('SPAN')
+    value_of($($('#todo').find(':first-child')[1]).attr('contenteditable')).should_be_true
+
+    value_of($($('#todo').find(':first-child')[1]).hasClass('task')).should_be_true
+    value_of($($('#todo').find(':first-child')[1]).text()).should_be('- task')
 	},
 
 	'should load up the task in the tree': function(){
@@ -42,7 +54,13 @@ describe('I need to be able to populate the taskpaper treeview', {
               appendTo: root 
               });
               
-    value_of($('#todo').html()).should_be('<li><span contenteditable="true" class="note">a note</span></li>')
+    // value_of($('#todo').html()).should_be('<li><span contenteditable="true" class="note">a note</span></li>')
+    value_of($('#todo').find(':first-child')[0].nodeName).should_be('LI')
+    value_of($('#todo').find(':first-child')[1].nodeName).should_be('SPAN')
+    value_of($($('#todo').find(':first-child')[1]).attr('contenteditable')).should_be_true
+
+    value_of($($('#todo').find(':first-child')[1]).hasClass('note')).should_be_true
+    value_of($($('#todo').find(':first-child')[1]).text()).should_be('a note')
 	},
 	
 	'should parse a @done tag and format with a strikethrough': function(){
@@ -54,7 +72,14 @@ describe('I need to be able to populate the taskpaper treeview', {
               appendTo: root 
               });
               
-    value_of($('#todo').html()).should_be('<li><span contenteditable="true" class="task">- <del>task</del> <a class="done">@done</a></span></li>')	  
+    // value_of($('#todo').html()).should_be('<li><span contenteditable="true" class="task">- <del>task</del> <a class="done">@done</a></span></li>')   
+    value_of($('#todo').find(':first-child')[0].nodeName).should_be('LI')
+    value_of($('#todo').find(':first-child')[1].nodeName).should_be('SPAN')
+    value_of($($('#todo').find(':first-child')[1]).attr('contenteditable')).should_be_true
+
+    value_of($($('#todo').find(':first-child')[1]).hasClass('task')).should_be_true
+    value_of($($('#todo').find(':first-child')[1]).text()).should_be('- task @done')
+    value_of($($('#todo').find(':first-child')[1]).html()).should_be('- <del>task</del> <a class="done">@done</a>')
 	},
 	
 	'should parse a tag in an item and add a tag handler': function(){
@@ -65,7 +90,14 @@ describe('I need to be able to populate the taskpaper treeview', {
                appendTo: root 
                });
 
-     value_of($('#todo').html()).should_be('<li><span contenteditable="true" class="task">- task <a class="email">@email</a></span></li>')	    
+     // value_of($('#todo').html()).should_be('<li><span contenteditable="true" class="task">- task <a class="email">@email</a></span></li>')     
+     value_of($('#todo').find(':first-child')[0].nodeName).should_be('LI')
+     value_of($('#todo').find(':first-child')[1].nodeName).should_be('SPAN')
+     value_of($($('#todo').find(':first-child')[1]).attr('contenteditable')).should_be_true
+
+     value_of($($('#todo').find(':first-child')[1]).hasClass('task')).should_be_true
+     value_of($($('#todo').find(':first-child')[1]).text()).should_be('- task @email')
+     value_of($($('#todo').find(':first-child')[1]).html()).should_be('- task <a class="email">@email</a>')
 	},
 
 })

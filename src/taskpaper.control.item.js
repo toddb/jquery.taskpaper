@@ -26,17 +26,11 @@
       switch(which)
       {
         case KEYS.PROJECT:
-          if (this.isAtEndOfItem()) {
-            this.addClass("project").removeClass('note').removeClass('task')
-            $('#todo').selectProjects('#projects')
-            }
+          if (this.isAtEndOfItem()) this.toggleProject()
           break;    
         case KEYS.DELETE:
           if (this.isAtStartOfEmptyItem()) this.removeItem()
-          if (this.isAtEndOfItem()) {
-            this.removeClass("project").addClass('note')
-            $('#todo').selectProjects('#projects')
-            }          
+          if (this.isAtEndOfItem()) this.toggleProject()         
           break;    
         case KEYS.TASK:
           if (this.isAtStartOfEmptyItem()) {this.addClass("task").removeClass('note')}
@@ -70,6 +64,17 @@
       }		
       
 		},
+		
+		toggleProject: function() { 
+		  if (this.hasClass('project')) {
+		    this.removeClass("project").addClass('note')
+		  } else {
+		    this.addClass("project").removeClass('note').removeClass('task')
+		  }
+		  $('#todo').selectProjects('#projects')  // FIX ME readin #todo and #projects
+		  return this
+		},
+		
 		
 		appendItemToItem: function() {
 		  var span = $('<span contenteditable="true">')
