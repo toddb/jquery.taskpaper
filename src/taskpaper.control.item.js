@@ -29,11 +29,11 @@
           if (this.isAtEndOfItem()) this.toggleProject()
           break;    
         case KEYS.DELETE:
-          if (this.isAtStartOfEmptyItem()) this.removeItem()
+         if (this.isAtStartOfEmptyItem()) this.removeItem()
           if (this.isAtEndOfItem()) this.toggleProject()         
           break;    
         case KEYS.TASK:
-          if (this.isAtStartOfEmptyItem()) {this.addClass("task").removeClass('note')}
+          if (this.isAtStartOfEmptyItem()) this.toggleTask()
           break;
         case KEYS.ENTER:
           if (this.isAtStartOfEmptyItem()) return false
@@ -73,6 +73,11 @@
 		  }
 		  $('#todo').selectProjects('#projects')  // FIX ME readin #todo and #projects
 		  return this
+		},
+
+		toggleTask: function() { 
+		  if (this.hasClass('task')) return this.removeClass("task").addClass('note').removeClass('project')
+		  return this.addClass("task").removeClass('note').removeClass('project')
 		},
 		
 		
