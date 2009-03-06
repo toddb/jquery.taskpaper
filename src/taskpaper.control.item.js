@@ -9,11 +9,17 @@
 		        var key = (event.which == '0') ? event.keyCode : event.which
             $(event.target).__keypress(key)
 		        })
+		    .bind('blur', function(event){ $(event.target).__blur()})
 		},
-				
+		
+		__blur: function() {
+      this.asSelf().replaceWith($.fn.taskpaper.treeview.editable_content(this.text(), this.attr('class')))
+      $('.'+$.fn.taskpaper.treeview.classes.taskpaper).selectTags('#tags')  // FIX ME - this is hardcoded yet passed in initially
+		},
+		
 		__keypress: function(which){
 		  
-		  var KEYS = $.fn.taskpaper.KEYS = {   // FIXME
+		  var KEYS = $.fn.taskpaper.KEYS = {   // FIXME - have as constants higher up?
      		ENTER: 13,
      		DELETE: 8,
      		PROJECT: 58, // :
@@ -29,8 +35,8 @@
           if (this.isAtEndOfItem()) this.toggleProject()
           break;    
         case KEYS.DELETE:
-         if (this.isAtStartOfEmptyItem()) this.removeItem()
-          if (this.isAtEndOfItem()) this.toggleProject()         
+          if (this.isAtStartOfEmptyItem()) this.removeItem()
+          // if (this.isAtEndOfItem()) this.toggleProject()         
           break;    
         case KEYS.TASK:
           if (this.isAtStartOfEmptyItem()) this.toggleTask()
@@ -39,23 +45,20 @@
           if (this.isAtStartOfEmptyItem()) return false
           
           // create project and add task // if project
-          var update = this;
           this.appendItemToItem() // && parse line to add tags // if task
  
-          update.item().replaceWith($.fn.taskpaper.treeview.editable_content(update.item().text(), update.attr('class')))
-          $('#todo').selectTags('#tags')
          // check that the preceeding character is not a : because then it needs to leave the previous line as project!
           break;
         case KEYS.UP:
           if (this.parent().is(':first-child')) {
-            this.projectForItem().focus() // FIX ME
+            this.projectForItem().focus() // FIX ME - doesn't actually select the correct node
           } else {
             this.prevItem().focus()           
           };
           break;
         case KEYS.DOWN:
           if (this.parent().is(':last-child')) {
-            this.nextProject().focus()  // FIX ME
+            this.nextProject().focus()  // FIX ME - doesn't actually select the correct node
           } else {
             this.nextItem().focus()
           };
@@ -71,13 +74,13 @@
 		  } else {
 		    this.addClass("project").removeClass('note').removeClass('task')
 		  }
-		  $('#todo').selectProjects('#projects')  // FIX ME readin #todo and #projects
+		  $('.'+$.fn.taskpaper.treeview.classes.taskpaper).selectProjects('#projects')  // FIX ME - this is hardcoded yet passed in initially
 		  return this
 		},
 
 		toggleTask: function() { 
 		  if (this.hasClass('task')) return this.removeClass("task").addClass('note').removeClass('project')
-		  return this.addClass("task").removeClass('note').removeClass('project')
+		  return this.addClass("task").removeClass('note').removeClass('project') 
 		},
 		
 		
