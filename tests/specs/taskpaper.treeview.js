@@ -79,7 +79,7 @@ describe('I need to be able to populate the taskpaper treeview', {
 
     value_of($($('#todo').find(':first-child')[1]).hasClass('task')).should_be_true
     value_of($($('#todo').find(':first-child')[1]).text()).should_be('- task @done')
-    value_of($($('#todo').find(':first-child')[1]).html()).should_be('- <del>task</del> <a class="done">@done</a>')
+    value_of($($('#todo').find(':first-child')[1]).html()).should_be('- <del>task</del> <a class="done" href="#">@done</a>')
 	},
 	
 	'should parse a tag in an item and add a tag handler': function(){
@@ -97,7 +97,7 @@ describe('I need to be able to populate the taskpaper treeview', {
 
      value_of($($('#todo').find(':first-child')[1]).hasClass('task')).should_be_true
      value_of($($('#todo').find(':first-child')[1]).text()).should_be('- task @email')
-     value_of($($('#todo').find(':first-child')[1]).html()).should_be('- task <a class="email">@email</a>')
+     value_of($($('#todo').find(':first-child')[1]).html()).should_be('- task <a class="email" href="#">@email</a>')
 	},
 
 })

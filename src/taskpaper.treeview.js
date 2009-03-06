@@ -32,11 +32,11 @@ jQuery.fn.taskpaper.treeview = {}
   	},
   	
   	addTagHandler: function(text){
-  	  return text.replace(/\s@(\w+)/g, " <a class='$1'>@$1</a>")
+  	  return text.replace(/\s@(\w+)/g, " <a class='$1' href='#'>@$1</a>")
   	},
   	
   	addDoneHandler: function(){
-  	  return function(){ $(this).unbind('dblclick').find('>span.task').wrapInner($('<del/>')).append(' <a class="done">@done</a>')}
+  	  return function(){ $(this).unbind('dblclick').find('>span.task').wrapInner($('<del/>')).append(' <a class="done" href="#">@done</a>')}
   	},
   	      	 	
 	})
