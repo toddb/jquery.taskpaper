@@ -129,7 +129,9 @@ jQuery.fn.taskpaper.treeview = {}
 		
 		selectTags: function(expr){
 		  ret = $("<select/>")
-		  ret.append($('<option selected/>').html('-- filter by tag @ --'))
+		    .append($('<option selected/>')
+		    .html('-- filter by tag @ --'))
+		    .blur(function(){ $(this).find('option:first').attr('selected', 'true') })
 		  tree = this
       $.each(this.tagslist(), function(){
         tag = this.valueOf()
@@ -140,7 +142,9 @@ jQuery.fn.taskpaper.treeview = {}
 		
 		selectProjects: function(expr){
 		  ret = $("<select/>")
-		  ret.append($('<option/>').html('-- filter by project @ --'))
+		    .append($('<option/>')
+		    .html('-- filter by project @ --'))
+		    .blur(function(){ $(this).find('option:first').attr('selected', 'true') })
 		  tree = this
       $.each(this.projectslist(), function(){
         tag = this.valueOf()
@@ -185,6 +189,28 @@ jQuery.fn.taskpaper.treeview = {}
       $.each(this.tagslist(), function(){
         $('.'+this.valueOf()).click(function(){ $('#query').val(this.text).keyup() })
       })		  
+		},
+		
+		serialize: function() {
+		  		  
+		  function processProject(item, depth){
+		    
+		    function whitespace(count, char){ var spaces = ''; for (var i=0; i < count; i++) {spaces += char || '\t'}; return spaces }
+  		  
+		    if ($(item).is('.project,.task,.note')) return str.push(whitespace(depth)+$.trim($(item).text()))
+		    if ($(item).is('ul')) depth += 1
+        $(item).children().each(function(){
+          processProject($(this), depth)
+        })
+		  }
+		  
+      var str = []
+
+      this.children().each(function() {
+        processProject(this, 0)
+      });
+
+       return str.join('\n');
 		},
 		
 	})
