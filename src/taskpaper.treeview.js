@@ -191,11 +191,14 @@ jQuery.fn.taskpaper.treeview = {}
       })		  
 		},
 		
-		serialize: function() {
+		serialize: function(whitespace, eol) {
+		  
+		  var ws = whitespace || '\t'; eol = eol || "\n"
+      var str = []
 		  		  
 		  function processProject(item, depth){
 		    
-		    function whitespace(count, char){ var spaces = ''; for (var i=0; i < count; i++) {spaces += char || '\t'}; return spaces }
+		    function whitespace(count){ var spaces = ''; for (var i=0; i < count; i++) {spaces += ws}; return spaces }
   		  
 		    if ($(item).is('.project,.task,.note')) return str.push(whitespace(depth)+$.trim($(item).text()))
 		    if ($(item).is('ul')) depth += 1
@@ -204,13 +207,11 @@ jQuery.fn.taskpaper.treeview = {}
         })
 		  }
 		  
-      var str = []
-
       this.children().each(function() {
         processProject(this, 0)
       });
 
-       return str.join('\n');
+      return str.join(eol);
 		},
 		
 	})

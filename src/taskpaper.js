@@ -28,8 +28,11 @@ jQuery.fn.taskpaper = jQuery.fn.taskpaper.getResults = function(options) {
             
             // FIXME - this should be in the taskpaper.treeview - but it isn't binding nicely -- hhhhmmmm
             $().bindItems()
-            
-					},
+             //            
+             // $('#todo').sortable({ 
+             //   cursor: 'move',
+             //   items: 'li' });
+ 					},
         
     }, options);
     
