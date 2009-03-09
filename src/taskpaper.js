@@ -32,7 +32,7 @@ jQuery.fn.taskpaper = jQuery.fn.taskpaper.getResults = function(options) {
             $('#todo').sortable({ 
                 cursor: 'move',
                 items: 'li',
-                handle: '.icon' });
+                handle: '.handle' });
   					},
         
     }, options);

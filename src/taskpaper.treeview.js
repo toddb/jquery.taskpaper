@@ -24,7 +24,9 @@ jQuery.fn.taskpaper.treeview = {}
   			.html(this.addTagHandler(this.addStrikethroughOnDone(text)))
   			.wrapInner($('<span contenteditable="true">')
   			  .addClass(type))
-  			  .prepend($('<span class="icon-'+type+'>').html('&nbsp;'))
+  			  .prepend($('<span class="icon-'+type+'>')
+  			    .html('&nbsp;')
+  			    .addClass('handle'))
   			.dblclick(this.addDoneHandler())
     },
     
