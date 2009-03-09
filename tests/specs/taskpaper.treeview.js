@@ -42,7 +42,7 @@ describe('I need to be able to populate the taskpaper treeview', {
               appendTo: root 
               });
               
-    value_of_item(item.type, item.text)
+    value_of_item(item.type, 'task')
 
  	},
 
@@ -67,7 +67,7 @@ describe('I need to be able to populate the taskpaper treeview', {
               appendTo: root 
               });
     
-    value_of_item(item.type, '- <del>task</del> <a class="done" href="#">@done</a>')
+    value_of_item(item.type, '<del>task</del> <a class="done" href="#">@done</a>')
  	},
 	
 	'should parse a tag in an item and add a tag handler': function(){
@@ -78,7 +78,7 @@ describe('I need to be able to populate the taskpaper treeview', {
                appendTo: root 
                });
 
-    value_of_item(item.type, '- task <a class="email" href="#">@email</a>')
+    value_of_item(item.type, 'task <a class="email" href="#">@email</a>')
 	},
 
 })

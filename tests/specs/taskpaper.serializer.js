@@ -2,7 +2,7 @@ describe('taskpaper serializer : ', {
   
   before_all: function() {
     $('<ul id="todo">').appendTo('#main')
-		$('#todo').taskpaper({ url: 'data/simple.taskpaper'	})
+		$('#todoSimple').taskpaper({ url: 'data/simple.taskpaper'	})
     
     $('<ul id="todoComplex">').appendTo('#main')
     $('#todoComplex').taskpaper({ url: 'data/sample.taskpaper' })
@@ -13,7 +13,7 @@ describe('taskpaper serializer : ', {
 	},
 
   'should be able to serialise a flat structure' : function() {  
-    value_of($('#todo').serialize()).should_be('Personal:\n\t- @email Fred McDowell re: lunch @due(2008-12-22)');
+    value_of($('#todoSimple').serialize()).should_be('Personal:\n\t- @email Fred McDowell re: lunch @due(2008-12-22)');
   },
   
   'should be able to serialise nested structure' : function() {

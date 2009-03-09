@@ -21,17 +21,22 @@ jQuery.fn.taskpaper.treeview = {}
     
     editable_content: function(text, type) {
       return $('<li/>')
-  			.html(this.addTagHandler(this.addStrikethroughOnDone(text)))
+  			.html(this.addTagHandler(this.removeDash(this.addStrikethroughOnDone(text))))
   			.wrapInner($('<span contenteditable="true">')
   			  .addClass(type))
-  			  .prepend($('<span class="icon-'+type+'>')
+  			  .prepend($('<span/>')
   			    .html('&nbsp;')
-  			    .addClass('handle'))
+  			    .addClass('handle')
+  			    .addClass('icon-'+type))
   			.dblclick(this.addDoneHandler())
     },
     
+    removeDash: function(text) {
+      return text.replace(/-\s(.*)/g, "$1")
+    },
+    
     addStrikethroughOnDone: function(text){
-  	  return text.replace(/-\s(.*)\s(@done)(.*)/g, "- <del>$1</del> $2$3")
+  	  return text.replace(/-\s(.*)\s(@done)(.*)/g, "<del>$1</del> $2$3")
   	},
   	
   	addTagHandler: function(text){
@@ -203,7 +208,8 @@ jQuery.fn.taskpaper.treeview = {}
 		    
 		    function whitespace(count){ var spaces = ''; for (var i=0; i < count; i++) {spaces += ws}; return spaces }
   		  
-		    if ($(item).is('.project,.task,.note')) return str.push(whitespace(depth)+$.trim($(item).text()))
+		    if ($(item).is('.project,.note')) return str.push(whitespace(depth)+$.trim($(item).text()))
+		    if ($(item).is('.task'))          return str.push(whitespace(depth)+$.trim('- '+$(item).text()))
 		    if ($(item).is('ul')) depth += 1
         $(item).children().each(function(){
           processProject($(this), depth)
