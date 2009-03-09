@@ -31,7 +31,8 @@ jQuery.fn.taskpaper = jQuery.fn.taskpaper.getResults = function(options) {
           
             $('#todo').sortable({ 
                 cursor: 'move',
-                items: 'li' });
+                items: 'li',
+                handle: '.icon' });
   					},
         
     }, options);

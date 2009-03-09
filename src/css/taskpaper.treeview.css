@@ -8,10 +8,11 @@
 	background-color: white;
 	margin-top: 4px;
 }
-.taskpaper li { padding: 3px 0 2px 16px; 	list-style: none;}
-.taskpaper span.project, .taskpaper span.task, .taskpaper span.note { padding: 1px 0 1px 25px; display: block; }
+/*.taskpaper li { padding: 3px 0 2px 16px;  list-style: none;}*/
+.taskpaper li { padding: 3px 0 2px 20px; 	list-style: none;}
+.taskpaper span.project, .taskpaper span.task, .taskpaper span.note { padding: 1px 0 1px 2px; }
 .taskpaper span.project { 
-  background: url(../images/project.gif) 0 60% no-repeat; 
+/*  background: url(../images/project.gif) 0 60% no-repeat; */
   font-size: large; 
   font-color: #333; 
   font-weight: bold;
@@ -20,3 +21,16 @@
 
 .ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 12px !important; }
 .ui-sortable-placeholder * { visibility: hidden; }
+
+.taskpaper span.icon-project { 
+  background: url(../images/project.gif) 0 60% no-repeat;
+  padding: 3px 0 2px 15px;
+  }
+.taskpaper span.icon-task { 
+  background: url(../images/task.gif) 0 60% no-repeat;
+  padding: 3px 0 2px 15px;
+  }
+.taskpaper span.icon-note { 
+  background: url(../images/note.gif) 0 60% no-repeat;
+  padding: 3px 0 2px 15px;
+  }

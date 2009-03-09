@@ -24,6 +24,7 @@ jQuery.fn.taskpaper.treeview = {}
   			.html(this.addTagHandler(this.addStrikethroughOnDone(text)))
   			.wrapInner($('<span contenteditable="true">')
   			  .addClass(type))
+  			  .prepend($('<span class="icon-'+type+'>').html('&nbsp;'))
   			.dblclick(this.addDoneHandler())
     },
     
@@ -69,7 +70,7 @@ jQuery.fn.taskpaper.treeview = {}
 		},
 		
 		items: function(){
-		  return this.find("li>span")
+		  return this.find("li>span.project,li>span.task,li>span.note")
 		},
 		
 		tags: function(){
