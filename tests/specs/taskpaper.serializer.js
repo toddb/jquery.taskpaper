@@ -4,7 +4,7 @@ describe('taskpaper serializer : ', {
     $('<ul id="todo">').appendTo('#main')
 		$('#todo').taskpaper({ url: 'data/simple.taskpaper'	})
     
-        $('<ul id="todoComplex">').appendTo('#main')
+    $('<ul id="todoComplex">').appendTo('#main')
     $('#todoComplex').taskpaper({ url: 'data/sample.taskpaper' })
 	},
 	

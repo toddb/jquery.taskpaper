@@ -17,3 +17,6 @@
   font-weight: bold;
   font-family: 'trebuchet ms', verdana, arial;
   }
+
+.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 12px !important; }
+.ui-sortable-placeholder * { visibility: hidden; }
