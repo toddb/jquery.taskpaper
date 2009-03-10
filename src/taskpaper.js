@@ -26,7 +26,6 @@ jQuery.fn.taskpaper = jQuery.fn.taskpaper.getResults = function(options) {
             
             $.each(feed.items, function() { node(this, parent)} )
             
-            console.log($('#todo'))
             // FIXME - this should be in the taskpaper.treeview - but it isn't binding nicely -- hhhhmmmm
             $('#todo').bindItems()
           

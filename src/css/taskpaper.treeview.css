@@ -9,8 +9,8 @@
 	margin-top: 4px;
 }
 /*.taskpaper li { padding: 3px 0 2px 16px;  list-style: none;}*/
-.taskpaper li { padding: 3px 0 2px 20px; 	list-style: none;}
-.taskpaper span.project, .taskpaper span.task, .taskpaper span.note { padding: 1px 0 1px 2px; }
+.taskpaper li { padding: 3px 0 2px 20px; list-style: none;}
+.taskpaper span.project, .taskpaper span.task, .taskpaper span.note { padding: 1px 30px 1px 2px; width: 100%; }
 .taskpaper span.project { 
 /*  background: url(../images/project.gif) 0 60% no-repeat; */
   font-size: large; 

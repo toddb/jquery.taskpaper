@@ -35,6 +35,7 @@
           if (this.isAtEndOfItem()) this.toggleProject()
           break;    
         case KEYS.DELETE:
+         console.log($.selection())
           if (this.isAtStartOfEmptyItem()) this.removeItem()
           // if (this.isAtEndOfItem()) this.toggleProject()         
           break;    
@@ -79,18 +80,15 @@
 		},
 
 		toggleTask: function() { 
-		  if (this.hasClass('task')) return this.removeClass("task").addClass('note').removeClass('project')
-		  return this.addClass("task").removeClass('note').removeClass('project') 
+		  if (!this.hasClass('task')) this.removeClass("task").addClass('note').removeClass('project')
+      // return this.addClass("task").removeClass('note').removeClass('project') 
 		},
 		
-		
 		appendItemToItem: function() {
-		  var span = $('<span contenteditable="true">')
-            .addClass('task')
-            .html('&nbsp;')     
-		  var item = $('<li>').append(span).insertAfter(this.parent(':first')).hide().slideDown('slow')		  
+      var span = $.fn.taskpaper.treeview.editable_content('&nbsp;', 'note')    
+		  var item = span.insertAfter(this.parent(':first')).hide().slideDown('slow')		  
       this.bindItems()
-      span.focus() // span focus must come after item creation
+      span.find('span.note').focus() // span focus must come after item creation
       return item
 		},
 		
@@ -125,7 +123,7 @@
 		},
 		
     prevItem: function() {
-      return this.parent().prev().find('span')
+      return this.parent().prev().find('span.note,span.task')
     },
     
     asSelf: function() {
@@ -133,7 +131,7 @@
     },
     
     nextItem: function() {
-      return this.parent().next().find('span')
+      return this.parent().next().find('span.note,span.task')
     },
 
     nextProject: function() {
