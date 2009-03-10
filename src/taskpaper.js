@@ -58,6 +58,8 @@ jQuery.fn.taskpaper = jQuery.fn.taskpaper.getResults = function(options) {
                 if (options.projectsControl) options.data.selectProjects(options.projectsControl)
                 if (options.filterControl) options.data.textFilter(options.filterControl)
                 options.data.tagsHandler()
+                
+                $('#send').click(function(){alert($('#todo').serialize())})
       
             }
         });
