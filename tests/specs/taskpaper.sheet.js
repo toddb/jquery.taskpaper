@@ -26,7 +26,7 @@ describe('I need to be able to manipulate the taskpaper sheet', {
 	},
 	
 	'should find any tags in lines': function(){
-	  value_of($('#todo').tags().size()).should_be(21)
+	  value_of($('#todo').tags().size()).should_be(20)
 	  value_of($('#todo').tag('due').size()).should_be(5)
 	  value_of($('#todo').tag('online').size()).should_be(6)
 	},

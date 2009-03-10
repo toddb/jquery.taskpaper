@@ -46,7 +46,7 @@ describe('I need to select tasks via tags drop down', {
 	'should show only tagged lines with @done':function(){
 	  $('#todo').hideAll()
 	  $('#todo').filtertag('email')
-    value_of($('#todo').items().parents('li:visible').size()).should_be(11)
+    value_of($('#todo').items().parents('li:visible').size()).should_be(9)
  	},
 	
 })
