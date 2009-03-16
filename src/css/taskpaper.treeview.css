@@ -34,3 +34,96 @@
   background: url(../images/note.gif) 0 60% no-repeat;
   padding: 3px 0 2px 15px;
   }
+  
+  .qe-panel {
+  	position: absolute;
+  	left: 0;
+  	top: 0;
+  	border: 1px solid #999;
+  	display: block;
+  	clear: both;
+  	margin: 0px;
+  	padding: 5px 5px 0 5px;
+  	background: #f0f0f0;
+  	font: 10px Tahoma, Verdana, Arial, Helvetica, sans-serif;
+  }
+
+  .qe-panel div.qe-panel-title {
+  	font-weight: bold;
+  	margin: -5px -5px 5px -5px;
+  	padding: 5px;
+  	height: 16px;
+  	line-height: 16px;
+  	background: #e0e0e0;
+  	border-bottom: 1px solid #ccc;
+  	display: block;
+  	clear: both;
+  	cursor: move;
+  }
+
+  .qe-panel div.qe-panel-title .close {
+  	position: absolute;
+  	top: 0;
+  	right: 0;
+  	display: block;
+  	float: right;
+  	text-decoration: none;
+  	font-size: 14px;
+  	font-weight: bold;
+  	color: #f00;
+  }
+
+  .qe-panel label {
+  	display: block;
+  	float: left;
+  	width: 50px;
+  	margin: 0 5px 0 2px;
+  	font-weight: bold;
+  	font-size: 10px;
+  	text-align: right;
+  	line-height: 20px;
+  	font-size: 100%;
+  }
+
+  .qe-panel input, .qe-panel select {
+  	margin: 0 5px 0 2px;
+  	padding: 0;
+  	height: 20px;
+  	font-size: 10px;
+  	border: 1px solid #ccc;
+  	float: left;
+  	vertical-align: middle;
+  	line-height: 20px;
+  }
+
+  .qe-panel button  {
+  	margin: 0 5px 0 2px;
+  	padding: 2px 5px;
+  	font-size: 10px;
+  	border: 1px solid #ccc;
+  	float: left;
+  	vertical-align: middle;
+  }
+
+  .qe-panel p.submit {
+  	margin: 5px -5px 0 -5px;
+  	padding: 5px;
+  	height: 20px;
+  	line-height: 20px;
+  	background: #e0e0e0;
+  	border-top: 1px solid #ccc;
+  	display: block;
+  	clear: both;
+  }
+  .qe-panel p.submit button {
+  	width: 60px;
+  	padding: 2px 5px;
+  	margin-left: 10px;
+  	font-weight: bold;
+  }
+
+  .qe-panel img {
+  	padding:0;
+  	margin:0;
+  	border:0;
+  }
