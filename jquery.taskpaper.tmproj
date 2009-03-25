@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>changelog.txt</string>
+	<string>tests/specs/taskpaper.sheet.js</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -34,20 +34,6 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>38</integer>
-		</dict>
-		<key>changelog.txt</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>22</integer>
-				<key>line</key>
-				<integer>8</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
 		</dict>
 		<key>lib/treeview/jquery.treeview.js</key>
 		<dict>
@@ -233,20 +219,6 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>todo</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>13</integer>
-				<key>line</key>
-				<integer>9</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
@@ -256,8 +228,6 @@
 		<string>src/taskpaper.treeview.js</string>
 		<string>src/taskpaperitem.js</string>
 		<string>tests/specs/taskpaper.sheet.js</string>
-		<string>todo</string>
-		<string>changelog.txt</string>
 		<string>src/css/taskpaper.treeview.css</string>
 		<string>test-src.html</string>
 		<string>README</string>
@@ -269,6 +239,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{221, 0}, {1138, 878}}</string>
+	<string>{{220, 0}, {1138, 878}}</string>
 </dict>
 </plist>

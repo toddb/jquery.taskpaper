@@ -40,7 +40,7 @@ jQuery.fn.taskpaper.treeview = {}
   	},
   	
   	addTagHandler: function(text){
-  	  return text.replace(/\s@(\w+)/g, " <a class='$1' href='#'>@$1</a>")
+  	  return text.replace(/^@(\w+)/g, "<a class='$1' href='#'>@$1</a>").replace(/\s@(\w+)/g, " <a class='$1' href='#'>@$1</a>")
   	},
   	
   	addDoneHandler: function(){
@@ -170,7 +170,7 @@ jQuery.fn.taskpaper.treeview = {}
 		
 		filterBox: function(){
       tree = $("."+CLASSES.taskpaper)
-      
+            
 		  var empty = /$\s?^/
       if (empty.test(this.val())) return tree.showAll()
 
@@ -185,6 +185,7 @@ jQuery.fn.taskpaper.treeview = {}
       filter = this.val().match(re)
       if (filter != null) {
         $.each(filter, function(){
+          console.warn(this)
           if (tag.test(this)) tree.filtertag(this.replace(tag, "$1"))
           if (project.test(this)) tree.filterproject(this.replace(project, "$1"))
           if (phrase.test(this)) tree.filteritem(this.replace(phrase, "$1"))
@@ -201,7 +202,7 @@ jQuery.fn.taskpaper.treeview = {}
 		
 		serialize: function(whitespace, eol) {
 		  
-		  var ws = whitespace || '\t'; eol = eol || "\n"
+		  var ws = whitespace || '  '; eol = eol || "\n"
       var str = []
 		  		  
 		  function processProject(item, depth){
