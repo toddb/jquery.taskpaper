@@ -185,7 +185,6 @@ jQuery.fn.taskpaper.treeview = {}
       filter = this.val().match(re)
       if (filter != null) {
         $.each(filter, function(){
-          console.warn(this)
           if (tag.test(this)) tree.filtertag(this.replace(tag, "$1"))
           if (project.test(this)) tree.filterproject(this.replace(project, "$1"))
           if (phrase.test(this)) tree.filteritem(this.replace(phrase, "$1"))
