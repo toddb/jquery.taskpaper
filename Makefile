@@ -4,6 +4,7 @@ SRC_DIR = src
 BUILD_DIR = build
 
 JS_FILES = ${SRC_DIR}/taskpaper.treeview.js\
+ ${SRC_DIR}/taskpaper.panel.js\
  ${SRC_DIR}/jquery.fn.js\
  ${SRC_DIR}/taskpaperresults.js\
  ${SRC_DIR}/taskpaperitem.js\
@@ -18,7 +19,7 @@ CSS_DIST = ${BUILD_DIR}/dist/css
 
 WE = ${BUILD_DIR}/dist/jquery.taskpaper.js
 WE_PACK = ${BUILD_DIR}/dist/jquery.taskpaper.pack.js
-WE_ARCH = ../jquery.taskpaper.tar.gz
+WE_ARCH = ../jquery.taskpaper-src-${VERSION}.tar.gz
 WE_RELEASE = jquery.taskpaper-${VERSION}.tar.gz
 
 MERGE = sed -e '1 s/^\xEF\xBB\xBF//' ${JS_FILES} > ${WE}
