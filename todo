@@ -1,4 +1,5 @@
 0.2:
+- remove the content-editable handlers and replace with simple form inputs (although editing won't have a wysiwyg feel the code will be simpler and stable)
 - remove lines with spaces
 - be able to deal with tabs in the document
 - have a tree structure that allow the list to "come back in" (this is a broken hierarchical tree because it can only grow in depth)
