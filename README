@@ -3,6 +3,11 @@ Copyright (C) 2008 toddb
 Dual licensed under the MIT (MIT-license.txt)
 and GPL (GPL-license.txt) licenses.
 
+Introduction
+============
+
+Taskpaper is a browser version of "Taskpaper" for the mac (http://www.hogbaysoftware.com/products/taskpaper). This project is an exercise to explore jQuery for doing this job using BDD. The current version has bugs on data entry. This is because using content editable elements in the DOM is generally hard. The current version is certainly not production ready but should give an idea on the extent to which we can produce test-first jQuery-based GUI on the browser.
+
 Dependencies
 ============
 
@@ -28,7 +33,7 @@ Usage
 
 <script type="text/javascript">
 
-$(function () {
+$(function() {
 
     $('#tree').taskpaper({
         url: 'my.taskpaper'
