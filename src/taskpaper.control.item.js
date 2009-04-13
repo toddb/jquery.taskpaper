@@ -1,4 +1,4 @@
-;$(function($){
+;(function($){
   
   $.extend($.fn, {
     
@@ -35,7 +35,7 @@
           if (this.isAtEndOfItem()) this.toggleProject()
           break;    
         case KEYS.DELETE:
-         console.log($.selection())
+          // console.log($.selection())
           if (this.isAtStartOfEmptyItem()) this.removeItem()
           // if (this.isAtEndOfItem()) this.toggleProject()         
           break;    
@@ -46,6 +46,7 @@
           if (this.isAtStartOfEmptyItem()) return false
           
           // create project and add task // if project
+          console.log("in enter")
           this.appendItemToItem() // && parse line to add tags // if task
  
          // check that the preceeding character is not a : because then it needs to leave the previous line as project!
@@ -148,4 +149,4 @@
     		
   })
   
-})
+})(jQuery);

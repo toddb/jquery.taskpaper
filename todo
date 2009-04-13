@@ -5,6 +5,7 @@
 - be able to deal with tabs in the document
 - have a tree structure that allow the list to "come back in" (this is a broken hierarchical tree because it can only grow in depth)
 - get the packaging working correctly (the min version is broken)
+- refactor the plugin all into one namespace $.fn.taskpaper and alias it to tp - currently alot sits at the $.fn level (too much)
 
 0.3:
 - send results back to a server

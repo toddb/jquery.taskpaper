@@ -1,4 +1,4 @@
-;$(function($) {
+;(function($) {
 
 	$.extend($, {
 	  
@@ -12,4 +12,4 @@
 		},
 	  
 	})
-});
+})(jQuery);

@@ -1,4 +1,4 @@
-;$(function($){
+;(function($){
   
   $.extend($.fn, {
     
@@ -41,5 +41,5 @@
     		
   })
   
-})
+})(jQuery);
 
