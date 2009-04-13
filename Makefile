@@ -14,13 +14,15 @@ JS_FILES = ${SRC_DIR}/taskpaper.treeview.js\
 RELEASE_FILES = todo README changelog.txt GPL-license.txt MIT-license.txt
 IMAGES = ${SRC_DIR}/images/*
 CSS = ${SRC_DIR}/css/*
-IMAGES_DIST = ${BUILD_DIR}/dist/images
-CSS_DIST = ${BUILD_DIR}/dist/css
+DIST = ${BUILD_DIR}/dist
+IMAGES_DIST = ${DIST}/images
+CSS_DIST = ${DIST}/css
 
-WE = ${BUILD_DIR}/dist/jquery.taskpaper.js
-WE_PACK = ${BUILD_DIR}/dist/jquery.taskpaper.pack.js
-WE_ARCH = ../jquery.taskpaper-src-${VERSION}.tar.gz
-WE_RELEASE = jquery.taskpaper-${VERSION}.tar.gz
+PROJECT = jquery.taskpaper
+WE = ${DIST}/${PROJECT}.js
+WE_PACK = ${DIST}/${PROJECT}.pack.js
+WE_ARCH = ../${PROJECT}-src-${VERSION}.tar.gz
+WE_RELEASE = ../${PROJECT}-${VERSION}.tar.gz
 
 MERGE = sed -e '1 s/^\xEF\xBB\xBF//' ${JS_FILES} > ${WE}
 PACKER = perl -I${BUILD_DIR}/packer ${BUILD_DIR}/packer/jsPacker.pl -i ${WE} -o ${WE_PACK} -e62
@@ -29,6 +31,7 @@ all: archive
 
 taskpaper:
 	@@echo "Building" ${WE}
+	@@if test -d ${DIST}; then echo ${DIST} " is okay" ; else mkdir ${DIST}; fi
 
 	@@echo " - Merging files"
 	@@${MERGE}
@@ -47,10 +50,10 @@ pack: taskpaper
 
 archive: pack
 	@@echo "Building" ${WE_RELEASE}
-
+	 
 	@@echo " - Cleaning CSS and images"
-	@@rm -f ${IMAGES_DIST}/*
-	@@rm -f ${CSS_DIST}/*
+	@@if test -d ${IMAGES_DIST}; then rm -f ${IMAGES_DIST}/*; else mkdir ${IMAGES_DIST}; fi
+	@@if test -d ${CSS_DIST}; then rm -f ${CSS_DIST}/*; else mkdir ${CSS_DIST}; fi
 	@@echo " - Coping CSS and images"
 	@@cp -R -f ${IMAGES} ${IMAGES_DIST}
 	@@cp -R -f ${CSS} ${CSS_DIST}

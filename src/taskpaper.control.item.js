@@ -46,7 +46,6 @@
           if (this.isAtStartOfEmptyItem()) return false
           
           // create project and add task // if project
-          console.log("in enter")
           this.appendItemToItem() // && parse line to add tags // if task
  
          // check that the preceeding character is not a : because then it needs to leave the previous line as project!
